@@ -14,8 +14,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.home_menu);
 
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
