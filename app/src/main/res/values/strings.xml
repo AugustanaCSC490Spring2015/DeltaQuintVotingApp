@@ -4,6 +4,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="welcome">Welcome Voter</string>
-    <string name="create_session">Create New Session</string>
-    <string name="join_session">Join Current Session</string>
+    <string name="create_session">Create\nNew Session</string>
+    <string name="join_session">Join\nCurrent Session</string>
 </resources>
