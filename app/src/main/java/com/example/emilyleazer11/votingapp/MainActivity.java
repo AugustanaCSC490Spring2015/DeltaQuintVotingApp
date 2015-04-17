@@ -1,9 +1,12 @@
 package com.example.emilyleazer11.votingapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.parse.Parse;
 import com.parse.ParseObject;
@@ -14,7 +17,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_menu);
+        setContentView(R.layout.activity_main);
 
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
@@ -25,6 +28,36 @@ public class MainActivity extends ActionBarActivity {
         testObject.put("foo", "bar");
         testObject.saveInBackground();
 
+        Button createSession = (Button) findViewById(R.id.createButton);
+        createSession.setOnClickListener(createClickListener);
+
+        Button joinSession = (Button) findViewById(R.id.joinButton);
+        joinSession.setOnClickListener(joinClickListener);
+
+    }
+
+    View.OnClickListener createClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v){
+            createNewSession();
+        }
+    };
+
+    View.OnClickListener joinClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v){
+            joinExistingSession();
+        }
+    };
+
+    public void createNewSession(){
+        Intent intent = new Intent(this, CreateSessionActivity.class);
+        startActivity(intent);
+    }
+
+    public void joinExistingSession(){
+        Intent intent = new Intent (this, JoinSessionActivity.class);
+        startActivity(intent);
     }
 
 
