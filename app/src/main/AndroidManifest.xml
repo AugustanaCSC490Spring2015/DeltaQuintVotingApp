@@ -20,14 +20,8 @@
             android:name=".CreateSessionActivity"/>
         <activity
             android:name=".JoinSessionActivity"/>
-
-
-
-
-
-
-
-
+        <activity
+            android:name=".AddCategoryActivity"/>
 
     </application>
 
