@@ -6,4 +6,5 @@
     <string name="welcome">Welcome Voter</string>
     <string name="create_session">Create\nNew Session</string>
     <string name="join_session">Join\nCurrent Session</string>
+    <string name="next">Next</string>
 </resources>
