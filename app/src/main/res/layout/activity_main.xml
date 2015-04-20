@@ -29,8 +29,8 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="@dimen/create_button_custom_width"
-            android:layout_height="@dimen/custom_button_height"
+            android:layout_width="@dimen/x3_normal_button_dimens"
+            android:layout_height="@dimen/x2_normal_button_dimens"
             android:text="@string/create_session"
             android:id="@+id/createButton"
             android:layout_row="0"
@@ -40,7 +40,7 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/custom_button_height"
+            android:layout_height="@dimen/x2_normal_button_dimens"
             android:text="@string/join_session"
             android:id="@+id/joinButton"
             android:layout_column="1"
