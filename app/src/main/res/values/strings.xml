@@ -1,10 +1,30 @@
 <resources>
     <string name="app_name">VotingApp</string>
 
+    // NEED TO BE DELETED
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    // For the activity_main.xml
     <string name="welcome">Welcome Voter</string>
     <string name="create_session">Create\nNew Session</string>
     <string name="join_session">Join\nCurrent Session</string>
+
+    // For the activity_create_session.xml
     <string name="next">Next</string>
+
+    // For the activity_add_category.xml
+    <string name="add_category_title">Add Categories</string>
+    <string name="back">Back</string>
+    <string name="category_name">Category Name:</string>
+    <string name="button_count">Number of Choices:</string>
+    <string name="label_button_title">Label Buttons</string>
+    <string name="button_number">Current Button</string>
+    <string name="button_value">Button Value</string>
+    <string name="button_label">Button Label:</string>
+    <string name="submit_label">Add This Button</string>
+    <string name="submit_category">Add This Category</string>
+    <string name="quit">Quit</string>
+    <string name="review">Review Session</string>
+
 </resources>
