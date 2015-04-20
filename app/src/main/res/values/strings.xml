@@ -6,13 +6,6 @@
     <string name="welcome">Welcome Voter</string>
     <string name="create_session">Create\nNew Session</string>
     <string name="join_session">Join\nCurrent Session</string>
-    <string name="next_create">Next</string>
-    <string name="session_name_create">Session Name:</string>
-    <string name="session_password_create">Session Password:</string>
-    <string name="confirm_password_create">Confirm Password:</string>
-    <string name="start_date_create">Start Date:</string>
-    <string name="end_date_create">End Date:</string>
-    <string name="quit_create">Quit</string>
     <string name="next">Next</string>
     <string name="session_name_join">Session Name:</string>
     <string name="session_password_join">Session Password:</string>
