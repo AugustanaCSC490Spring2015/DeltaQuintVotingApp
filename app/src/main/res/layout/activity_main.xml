@@ -29,7 +29,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/create_button_custom_width"
             android:layout_height="@dimen/custom_button_height"
             android:text="@string/create_session"
             android:id="@+id/createButton"
