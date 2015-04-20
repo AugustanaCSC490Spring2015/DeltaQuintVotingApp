@@ -1,19 +1,16 @@
 <resources>
     <string name="app_name">VotingApp</string>
 
-    // NEED TO BE DELETED
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
-    // For the activity_main.xml
     <string name="welcome">Welcome Voter</string>
     <string name="create_session">Create\nNew Session</string>
     <string name="join_session">Join\nCurrent Session</string>
-
-    // For the activity_create_session.xml
     <string name="next">Next</string>
-
-    // For the activity_add_category.xml
+    <string name="session_name_join">Session Name:</string>
+    <string name="session_password_join">Session Password:</string>
+    <string name="join_session_button_join">Join Session</string>
+    <string name="join_header">Join Existing Session</string>
     <string name="add_category_title">Add Categories</string>
     <string name="back">Back</string>
     <string name="category_name">Category Name:</string>
