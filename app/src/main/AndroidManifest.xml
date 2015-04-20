@@ -22,6 +22,8 @@
             android:name=".JoinSessionActivity"/>
         <activity
             android:name=".AddCategoryActivity"/>
+        <activity
+            android:name=".SessionActivity"/>
 
 
     </application>
