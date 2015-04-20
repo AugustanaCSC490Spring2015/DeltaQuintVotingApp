@@ -19,6 +19,9 @@ public class CreateSessionActivity extends Activity {
         Button nextButton = (Button) findViewById(R.id.nextButton);
         nextButton.setOnClickListener(nextClickListener);
 
+        Button quitButton = (Button) findViewById(R.id.quitButton);
+        quitButton.setOnClickListener(quitClickListener);
+
     }
 
     View.OnClickListener nextClickListener = new View.OnClickListener() {
@@ -28,11 +31,21 @@ public class CreateSessionActivity extends Activity {
         }
     };
 
+    View.OnClickListener quitClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            launchMainActivity();
+        }
+    };
+
     public void nextPage(){
         Intent intent = new Intent(this, AddCategoryActivity.class);
         startActivity(intent);
+    }
 
-
+    public void launchMainActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 

@@ -5,13 +5,114 @@
     android:layout_height="match_parent"
     tools:context=".CreateSessionActivity"
     android:columnCount="2"
-    android:rowCount="6">
+    android:rowCount="6"
+    android:columnOrderPreserved="false"
+    android:clickable="true"
+    android:id="@+id/gridLayout"
+    android:longClickable="false">
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/sessionName"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:text="@string/session_name_create" />
+
+    <EditText
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/sessionNameEditText"
+        android:layout_row="0"
+        android:layout_column="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/session_password_create"
+        android:id="@+id/sessionPassword"
+        android:layout_row="1"
+        android:layout_column="0" />
+
+    <EditText
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/sessionPasswordEditText"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/confirm_password_create"
+        android:id="@+id/confirmPassword"
+        android:layout_column="0"
+        android:layout_row="2" />
+
+    <EditText
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirmPasswordEditText"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/start_date_create"
+        android:id="@+id/startDate"
+        android:layout_row="3"
+        android:layout_column="0" />
+
+    <EditText
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/startDateEditText"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:focusable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/end_date_create"
+        android:id="@+id/endDate"
+        android:layout_row="4"
+        android:layout_column="0" />
+
+    <EditText
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/endDateEditText"
+        android:layout_row="4"
+        android:layout_column="1" />
+
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="76dp"
+        android:text="@string/quit_create"
+        android:id="@+id/quitButton"
+        android:layout_row="5"
+        android:layout_column="0"
+        android:layout_gravity="center|bottom" />
+
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="76dp"
+        android:text="@string/next_create"
         android:id="@+id/nextButton"
         android:layout_column="1"
-        android:layout_row="5" />
+        android:layout_row="5"
+        android:layout_gravity="center|bottom|left" />
 </GridLayout>

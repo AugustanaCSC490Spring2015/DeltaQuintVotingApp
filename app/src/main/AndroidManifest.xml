@@ -23,6 +23,7 @@
         <activity
             android:name=".AddCategoryActivity"/>
 
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
