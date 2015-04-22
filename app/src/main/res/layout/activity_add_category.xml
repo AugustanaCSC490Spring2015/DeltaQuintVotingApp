@@ -17,19 +17,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView"
+            android:id="@+id/addCategories"
             android:layout_column="0"
             android:layout_row="0"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:layout_gravity="center|left" />
+            android:layout_gravity="center|left"
+            android:text="@string/add_category_title" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/textView2"
+            android:text="@string/category_name"
+            android:id="@+id/categoryName"
             android:layout_row="1"
             android:layout_column="0"
             android:paddingRight="@dimen/activity_horizontal_margin"
@@ -38,7 +38,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
+            android:id="@+id/categoryNameValue"
             android:layout_column="1"
             android:layout_row="1"
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -49,8 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/textView3"
+            android:text="@string/button_count"
+            android:id="@+id/buttonCount"
             android:layout_row="2"
             android:layout_column="0"
             android:paddingRight="@dimen/activity_horizontal_margin"
@@ -59,7 +59,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editText2"
+            android:id="@+id/buttonCountValue"
             android:layout_column="1"
             android:layout_row="2"
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -70,8 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/textView8"
+            android:text="@string/category_count"
+            android:id="@+id/categoryCount"
             android:layout_column="1"
             android:layout_row="0"
             android:layout_gravity="center|right" />
@@ -94,8 +94,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView4"
+            android:text="@string/label_button_title"
+            android:id="@+id/labelButtons"
             android:layout_column="0"
             android:layout_row="0"
             android:layout_gravity="left|top" />
@@ -104,8 +104,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/textView5"
+            android:text="@string/button_number"
+            android:id="@+id/buttonNumber"
             android:layout_row="1"
             android:layout_column="0"
             android:layout_gravity="center_horizontal"
@@ -115,8 +115,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/textView6"
+            android:text="@string/button_value"
+            android:id="@+id/buttonValue"
             android:layout_row="1"
             android:layout_column="1"
             android:layout_gravity="center_horizontal|bottom"
@@ -126,7 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:id="@+id/editText3"
+            android:id="@+id/buttonNumberValue"
             android:layout_row="2"
             android:layout_column="0"
             android:layout_gravity="center_horizontal"
@@ -137,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:id="@+id/editText4"
+            android:id="@+id/buttonValueAmount"
             android:layout_row="2"
             android:layout_column="1"
             android:layout_gravity="center_horizontal"
@@ -148,8 +148,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/textView7"
+            android:text="@string/button_label"
+            android:id="@+id/buttonLabelField"
             android:layout_column="0"
             android:layout_row="3"
             android:layout_columnWeight="1"
@@ -158,7 +158,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editText5"
+            android:id="@+id/buttonLabelValue"
             android:layout_column="1"
             android:layout_row="3"
             android:layout_columnWeight="1"
@@ -182,8 +182,8 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button3" />
+            android:text="@string/submit_button_label"
+            android:id="@+id/submitLabelButton" />
     </LinearLayout>
 
     <LinearLayout
@@ -197,8 +197,8 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button4"
+            android:text="@string/submit_category"
+            android:id="@+id/submitCategoryButton"
             android:layout_gravity="center" />
     </LinearLayout>
 
@@ -215,16 +215,16 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="@dimen/x1.25_normal_button_dimens"
-            android:text="New Button"
-            android:id="@+id/button5"
+            android:text="@string/quit_create"
+            android:id="@+id/quitButton"
             android:layout_gravity="fill_horizontal|bottom|left"
             android:layout_columnWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="@dimen/x1.25_normal_button_dimens"
-            android:text="New Button"
-            android:id="@+id/button6"
+            android:text="@string/review"
+            android:id="@+id/reviewButton"
             android:layout_gravity="fill_horizontal|bottom|right"
             android:layout_columnWeight="1" />
     </GridLayout>
