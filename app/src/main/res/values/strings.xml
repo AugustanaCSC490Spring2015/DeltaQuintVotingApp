@@ -14,6 +14,13 @@
     <string name="join_header">Join Existing Session</string>
     <string name="next">Next</string>
 
+    <string name="session_name_create">Create Session</string>
+    <string name="session_password_create">Create Password:</string>
+    <string name="confirm_password_create">Confirm Password:</string>
+    <string name="start_date_create">Start Date</string>
+    <string name="end_date_create">End Date</string>
+    <string name="quit_create">Quit</string>
+
     <string name="add_category_title">Add Categories</string>
     <string name="category_count">0/0</string>
     <string name="category_name">Category Name:</string>
@@ -27,12 +34,6 @@
     <string name="quit">Quit</string>
     <string name="review">Review Session</string>
 
-    <string name="session_name_create">Create Session</string>
-    <string name="session_password_create">Create</string>
-    <string name="confirm_password_create">Are you sure?</string>
-    <string name="start_date_create">Start Date</string>
-    <string name="end_date_create">End Date</string>
-    <string name="quit_create">Quit</string>
-    <string name="next_create">Next</string>
+
 
 </resources>
