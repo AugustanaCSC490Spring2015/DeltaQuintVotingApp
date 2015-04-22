@@ -46,7 +46,7 @@ public class CreateSessionActivity extends Activity {
 
         createCategory();
 
-        Intent intent = new Intent(this, AddCategoryActivity.class);
+        Intent intent = new Intent(this, NewCategoryActivity.class);
         startActivity(intent);
     }
 

@@ -25,6 +25,8 @@
             android:name=".AddCategoryActivity"/>
         <activity
             android:name=".SessionActivity"/>
+        <activity
+            android:name=".NewCategoryActivity"/>
 
 
     </application>
