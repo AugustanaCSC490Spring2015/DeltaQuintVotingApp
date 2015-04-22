@@ -1,7 +1,10 @@
 package com.example.emilyleazer11.votingapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.parse.ParseObject;
 
@@ -13,10 +16,26 @@ public class AddCategoryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState){
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_join_session);
+        setContentView(R.layout.activity_add_category);
 
         ParseObject testObject = new ParseObject("Sessions");
         testObject.put("session_name", "Test Session Name");
         testObject.saveInBackground();
+
+        Button quitButton = (Button) findViewById(R.id.quitButton);
+        quitButton.setOnClickListener(quitClickListener);
+    }
+
+
+    View.OnClickListener quitClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            launchMainActivity();
+        }
+    };
+
+    public void launchMainActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
