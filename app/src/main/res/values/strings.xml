@@ -22,7 +22,7 @@
     <string name="quit_create">Quit</string>
 
     <string name="add_category_title">Add Categories</string>
-    <string name="category_count">0/0</string>
+    <string name="category_count">1/1</string>
     <string name="category_name">Category Name:</string>
     <string name="button_count">Number of Choices:</string>
     <string name="label_button_title">Label Buttons</string>
