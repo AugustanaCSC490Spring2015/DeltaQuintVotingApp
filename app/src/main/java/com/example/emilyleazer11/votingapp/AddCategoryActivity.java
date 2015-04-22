@@ -18,10 +18,6 @@ public class AddCategoryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
 
-        ParseObject testObject = new ParseObject("Sessions");
-        testObject.put("session_name", "Test Session Name");
-        testObject.saveInBackground();
-
         Button quitButton = (Button) findViewById(R.id.quitButton);
         quitButton.setOnClickListener(quitClickListener);
     }
