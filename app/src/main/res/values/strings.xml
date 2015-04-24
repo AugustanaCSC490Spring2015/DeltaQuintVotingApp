@@ -7,6 +7,7 @@
     <string name="welcome">Welcome Voter</string>
     <string name="create_session">Create\nNew Session</string>
     <string name="join_session">Join\nCurrent Session</string>
+    <string name="admin_menu">Admin: View and Manage Results</string>
 
     <string name="session_name_join">Session Name:</string>
     <string name="session_password_join">Session Password:</string>
