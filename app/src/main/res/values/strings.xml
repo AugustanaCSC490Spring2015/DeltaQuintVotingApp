@@ -16,16 +16,17 @@
     <string name="next">Next</string>
 
     <string name="session_title_join">Creating Your Session</string>
-    <string name="session_name_create">Create Session</string>
-    <string name="session_password_create">Create Password:</string>
-    <string name="confirm_password_create">Confirm Password:</string>
+    <string name="session_name_create">Create Session Name</string>
+    <string name="session_password_create">Create Session Password</string>
+    <string name="confirm_password_create">Confirm Session Password</string>
     <string name="admin_description">
-        The following field is for the admin of the session.
-        The admin will be able to do the following:
+        The following field is for the admin of the session who can do the following:
         \n-They will be able to open and close voting for the session.
         \n-They will be able to view results of the session.
         \n-They will be able to delete the session.
     </string>
+    <string name="admin_create_password">Create Admin Password</string>
+    <string name="admin_confirm_password">Confirm Admin Password</string>
     <string name="quit_create">Quit</string>
 
     <string name="add_category_title">Add Categories</string>

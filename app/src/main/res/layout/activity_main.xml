@@ -2,24 +2,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
     android:columnCount="1"
-    android:rowCount="3">
+    android:rowCount="3"
+    android:background="@android:color/holo_blue_dark">
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/welcome"
-        android:id="@+id/welcomeTextView"
-        android:layout_gravity="center|top"
-        android:gravity="center"
-        android:layout_column="0"
-        android:layout_row="0" />
+        android:padding="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/welcome"
+            android:id="@+id/welcomeTextView"
+            android:layout_gravity="center|top"
+            android:gravity="center"
+            android:layout_column="0"
+            android:layout_row="0" />
+    </LinearLayout>
 
     <GridLayout
         android:layout_width="fill_parent"
@@ -29,7 +33,11 @@
         android:columnCount="2"
         android:rowCount="1"
         android:layout_gravity="center|fill_horizontal|bottom"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#fdd835"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
         <Button
             android:layout_width="@dimen/x3_normal_button_dimens"
@@ -56,7 +64,11 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#fdd835"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
         <Button
             android:layout_width="fill_parent"
