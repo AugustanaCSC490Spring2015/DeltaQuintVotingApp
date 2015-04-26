@@ -5,4 +5,5 @@
     <dimen name="x2_normal_button_dimens">96dp</dimen>
     <dimen name="x1.25_normal_button_dimens">60dp</dimen>
     <dimen name="x3_normal_button_dimens">144dp</dimen>
+    <dimen name="activity_standard_margin_half">8dp</dimen>
 </resources>
