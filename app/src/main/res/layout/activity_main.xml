@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:columnCount="1"
-    android:rowCount="3"
+    android:rowCount="4"
     android:background="@android:color/darker_gray">
 
     <LinearLayout
@@ -27,9 +27,31 @@
     </LinearLayout>
 
     <GridLayout
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_column="0"
         android:layout_row="1"
+        android:columnCount="1"
+        android:rowCount="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/logo"
+            android:contentDescription="@string/logo_description"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:longClickable="false"
+            android:layout_gravity="center"
+            android:src="@drawable/greek_voter_logo"
+            android:scaleType="fitCenter" />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_row="2"
         android:layout_column="0"
         android:columnCount="2"
         android:rowCount="1"
@@ -71,7 +93,9 @@
         android:background="#fdd835"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin">
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_column="0"
+        android:layout_row="3">
 
         <Button
             android:layout_width="fill_parent"
