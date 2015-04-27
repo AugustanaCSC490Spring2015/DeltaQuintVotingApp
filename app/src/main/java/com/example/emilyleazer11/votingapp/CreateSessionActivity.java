@@ -86,7 +86,9 @@ public class CreateSessionActivity extends Activity {
         Log.w(TAG, "Are Session Passwords Equal? " + sessionPasswordEqual);
         Log.w(TAG, "Are Admin Passwords Equal? " + adminPasswordEqual);
 
-        if(sessionPasswordEqual && adminPasswordEqual){
+        if (newSessionName.equals("") || newSessionPassword.equals("") || newConfirmSessionPassword.equals("") || newAdminPassword.equals("") || newConfirmAdminPassword.equals("")){
+            Toast.makeText(this, "Please fill out every field", Toast.LENGTH_SHORT).show();
+        } else if (sessionPasswordEqual && adminPasswordEqual) {
             //add Session Name to database
             ParseObject newSession = new ParseObject("Admin");
             newSession.put("session_name", newSessionName);
