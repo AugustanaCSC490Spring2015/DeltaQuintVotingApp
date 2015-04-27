@@ -22,13 +22,15 @@
         <activity
             android:name=".JoinSessionActivity"/>
         <activity
-            android:name=".AddCategoryActivity"/>
-        <activity
             android:name=".SessionActivity"/>
         <activity
             android:name=".NewCategoryActivity"/>
         <activity
             android:name=".EndSessionActivity"/>
+        <activity
+            android:name=".AdminLoginActivity"/>
+        <activity
+            android:name=".ResultsActivity"/>
 
 
     </application>

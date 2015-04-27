@@ -29,6 +29,11 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void adminLogin(View view){
+        Intent intent = new Intent (this, AdminLoginActivity.class);
+        startActivity(intent);
+    }
+
 
 
     @Override
