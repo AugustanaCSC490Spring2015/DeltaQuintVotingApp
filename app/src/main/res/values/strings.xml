@@ -21,13 +21,17 @@
     <string name="confirm_password_create">Confirm Session Password</string>
     <string name="admin_description">
         The following field is for the admin of the session who can do the following:
-        \n-They will be able to open and close voting for the session.
-        \n-They will be able to view results of the session.
-        \n-They will be able to delete the session.
+        \n-Open and close voting for the session.
+        \n-View results of the session.
+        \n-Delete the session.
     </string>
     <string name="admin_create_password">Create Admin Password</string>
     <string name="admin_confirm_password">Confirm Admin Password</string>
     <string name="quit_create">Quit</string>
+    <string name="submit_button">Submit</string>
+    <string name="vote_recorded">Your vote has been recorded.</string>
+    <string name="quit_session">Quit</string>
+    <string name="join_session_again">Join Another\nSession</string>
 
     <string name="add_category_title">Add Categories</string>
     <string name="category_count">1/1</string>
