@@ -4,24 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnCount="1"
-    android:rowCount="4"
-    android:background="#fdd835">
+    android:rowCount="4">
 
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
+    <GridLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/activity_vertical_margin"
-        android:background="@android:color/holo_blue_dark">
+        android:columnCount="2"
+        android:rowCount="1"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:layout_gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/canidates_create"
-            android:id="@+id/textView" />
-    </LinearLayout>
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/category_name_new"
+            android:id="@+id/categoryNameTextView"
+            android:layout_row="0"
+            android:layout_column="0" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -34,35 +36,23 @@
 
     <GridLayout
         android:orientation="horizontal"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_row="1"
-        android:columnCount="1"
-        android:rowCount="3"
-        android:layout_gravity="center_horizontal"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_standard_margin_half">
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/categoryNameEditText"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:layout_gravity="fill_horizontal"
-            android:paddingBottom="@dimen/activity_standard_margin_half"
-            android:hint="@string/category_name_new" />
+        android:columnCount="2"
+        android:rowCount="1"
+        android:layout_gravity="fill_horizontal">
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/candidateEditText"
+            android:hint="@string/candidate_name_prompt_new"
             android:layout_column="0"
-            android:layout_row="1"
+            android:layout_row="0"
             android:layout_gravity="fill_horizontal"
-            android:hint="@string/candidate_name_prompt_new" />
+            android:layout_columnWeight="1" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -70,10 +60,9 @@
             android:layout_height="wrap_content"
             android:text="@string/add_candidate_new"
             android:id="@+id/addCandidateButton"
-            android:layout_column="0"
-            android:layout_row="2"
-            android:layout_gravity="right" />
-
+            android:layout_column="1"
+            android:layout_row="0"
+            android:layout_gravity="fill_horizontal" />
     </GridLayout>
 
     <LinearLayout
@@ -119,22 +108,19 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="@dimen/x1.25_normal_button_dimens"
-            android:text="@string/finish_session"
+            android:text="@string/end_voting_session_button_new"
+            android:id="@+id/endVotingSessionButton"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_gravity="fill_horizontal|bottom" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x1.25_normal_button_dimens"
+            android:text="@string/view_results_button_new"
             android:id="@+id/viewResultsButton"
             android:layout_column="1"
             android:layout_row="0"
             android:layout_gravity="fill_horizontal|bottom" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/tips_for_editing"
-            android:id="@+id/edittingTip"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:textColor="@android:color/black"
-            android:gravity="center_horizontal" />
     </GridLayout>
-
 </GridLayout>
