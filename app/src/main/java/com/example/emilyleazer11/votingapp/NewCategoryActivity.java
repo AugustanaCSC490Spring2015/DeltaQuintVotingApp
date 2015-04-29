@@ -15,8 +15,11 @@ public class NewCategoryActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_category);
 
-        Button endVotingSession = (Button) findViewById(R.id.endVotingSessionButton);
-        endVotingSession.setOnClickListener(endSessionClickListener);
+        Button endVotingSessionButton = (Button) findViewById(R.id.endVotingSessionButton);
+        endVotingSessionButton.setOnClickListener(endSessionClickListener);
+
+        Button viewResultsButton = (Button) findViewById(R.id.viewResultsButton);
+        viewResultsButton.setOnClickListener(viewResultsClickListener);
 
     }
 
@@ -27,8 +30,21 @@ public class NewCategoryActivity extends Activity{
         }
     };
 
+    View.OnClickListener viewResultsClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            launchResultsActivity();
+        }
+    };
+
+
     public void launchMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void launchResultsActivity(){
+        Intent intent = new Intent(this, ResultsActivity.class);
         startActivity(intent);
     }
 }

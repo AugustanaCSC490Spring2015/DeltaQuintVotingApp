@@ -90,7 +90,7 @@ public class CreateSessionActivity extends Activity {
             Toast.makeText(this, "Please fill out every field", Toast.LENGTH_SHORT).show();
         } else if (sessionPasswordEqual && adminPasswordEqual) {
             //add Session Name to database
-            ParseObject newSession = new ParseObject("Admin");
+            ParseObject newSession = new ParseObject("Sessions");
             newSession.put("session_name", newSessionName);
             newSession.saveInBackground();
 
