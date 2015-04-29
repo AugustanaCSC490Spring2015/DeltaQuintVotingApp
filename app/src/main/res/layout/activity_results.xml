@@ -96,7 +96,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x1.25_normal_button_dimens"
+            android:layout_height="wrap_content"
             android:text="@string/delete_session"
             android:id="@+id/deleteThisSessionButton"
             android:layout_gravity="center_horizontal"
