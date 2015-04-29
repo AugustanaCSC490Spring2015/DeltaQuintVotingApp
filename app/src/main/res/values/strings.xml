@@ -43,6 +43,15 @@
     <string name="candidate_list_new">Candidate List</string>
     <string name="end_voting_session_button_new">End Voting Session</string>
     <string name="view_results_button_new">View Results</string>
+    <string name="shareEditDeleteTitle">Edit or Delete the Candidate as \"%s\"</string>
+    <string-array name="dialog_items">
+        <item>Edit</item>
+        <item>Delete</item>
+    </string-array>
+    <string name="cancel">Cancel</string>
+    <string name="OK">OK</string>
+    <string name="confirmMessage">Are you sure you want to delete the candidate? \"%s\"?</string>
+    <string name="delete">Delete</string>
 
     <string name="add_category_title">Add Categories</string>
     <string name="category_count">1/1</string>
