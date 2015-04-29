@@ -9,7 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 /**
  * Created by emilyleazer11 on 4/17/2015.
@@ -90,16 +95,16 @@ public class CreateSessionActivity extends Activity {
             Toast.makeText(this, "Please fill out every field", Toast.LENGTH_SHORT).show();
         } else if (sessionPasswordEqual && adminPasswordEqual) {
             //add Session Name to database
-            ParseObject newSession = new ParseObject("Sessions");
-            newSession.put("session_name", newSessionName);
+            Session newSession = new Session();
+            newSession.setName(newSessionName);
             newSession.saveInBackground();
 
             //add Session PW to database
-            newSession.put("session_pass", newSessionPassword);
+            newSession.setPass(newSessionPassword);
             newSession.saveInBackground();
 
             //add Admin PW to database
-            newSession.put("admin_pass", newAdminPassword);
+            newSession.setAdminPass(newAdminPassword);
             newSession.saveInBackground();
 
             //go to next page
@@ -115,4 +120,28 @@ public class CreateSessionActivity extends Activity {
         }
 
     }
+
+
+    public void successPull(String string) {
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+    }
+
+    public void attemptCreateSession(String session) throws ParseException {
+        ParseQuery<Session> query = ParseQuery.getQuery("Sessions");
+        query.whereEqualTo("session_name", session);
+        query.findInBackground(new FindCallback<Session>() {
+            public void done(List<Session> sessionList, ParseException e) {
+                if (e == null) {
+                    if (sessionList.size() == 0) successPull("success");
+                    else successPull("fail");
+                    //this conditional should be changed so if it is true, the call to add that session is made
+                    // and if it is false, clear the field and prompt user that the session already exists.
+
+                } else {
+                    Log.w("session_name", "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
 }
