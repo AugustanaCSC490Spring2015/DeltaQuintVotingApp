@@ -79,6 +79,7 @@
     <string name="admin_login_submit">Login</string>
 
     <string name="session_results">Session Results</string>
+    <string name="session_name">Session Name</string>
     <string name="category">Category</string>
     <string name="refresh">Refresh Page</string>
     <string name="back_to_home">Home</string>
