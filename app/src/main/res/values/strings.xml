@@ -31,13 +31,15 @@
     <string name="admin_confirm_password">Confirm Admin Password</string>
     <string name="quit_create">Quit</string>
     <string name="submit_button">Submit</string>
-    <string name="vote_recorded">Your vote has been recorded.</string>
+
+    <string name="vote_thanks">Thanks!</string>
+    <string name="vote_recorded">Your vote has been recorded</string>
     <string name="quit_session">Quit</string>
     <string name="join_session_again">Join Another\nSession</string>
 
     <string name="candidate_name_prompt_new">Enter candidate name here</string>
     <string name="category_name_new">Category Name:</string>
-    <string name="add_candidate_new">Add Candidate</string>
+    <string name="add_candidate_new">Add\nCandidate</string>
     <string name="candidate_list_new">Candidate List</string>
     <string name="end_voting_session_button_new">End Voting Session</string>
     <string name="view_results_button_new">View Results</string>
@@ -60,6 +62,11 @@
     <string name="admin_login_password">Admin Password:</string>
     <string name="admin_login_submit">Login</string>
 
+    <string name="session_results">Session Results</string>
+    <string name="category">Category</string>
+    <string name="refresh">Refresh Page</string>
+    <string name="back_to_home">Home</string>
+    <string name="delete_session">Delete this session</string>
 
 
 </resources>
