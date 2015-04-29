@@ -50,7 +50,6 @@
             android:layout_column="0"
             android:ems="15"
             android:layout_gravity="center_horizontal"
-            android:textColor="#9e9e9e"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:hint="@string/session_name_create" />
 
@@ -62,7 +61,6 @@
             android:layout_column="0"
             android:ems="15"
             android:layout_gravity="center_horizontal"
-            android:textColor="#9e9e9e"
             android:hint="@string/session_password_create"
             android:inputType="textPassword" />
 
@@ -74,7 +72,6 @@
             android:layout_column="0"
             android:ems="15"
             android:layout_gravity="center_horizontal"
-            android:textColor="#9e9e9e"
             android:hint="@string/confirm_password_create"
             android:inputType="textPassword" />
     </GridLayout>
@@ -110,7 +107,6 @@
             android:layout_column="0"
             android:layout_row="1"
             android:layout_gravity="center_horizontal"
-            android:textColor="#e0e0e0"
             android:hint="@string/admin_create_password"
             android:inputType="textPassword" />
 
@@ -122,7 +118,6 @@
             android:layout_column="0"
             android:layout_row="2"
             android:layout_gravity="center_horizontal"
-            android:textColor="#e0e0e0"
             android:hint="@string/admin_confirm_password"
             android:inputType="textPassword" />
 

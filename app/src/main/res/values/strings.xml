@@ -37,12 +37,17 @@
     <string name="quit_session">Quit</string>
     <string name="join_session_again">Join Another\nSession</string>
 
-    <string name="candidate_name_prompt_new">Enter candidate name here</string>
-    <string name="category_name_new">Category Name:</string>
-    <string name="add_candidate_new">Add\nCandidate</string>
+    <string name="canidates_create">Adding Your Candidates</string>
+    <string name="candidate_name_prompt_new">Candidate Name</string>
+    <string name="category_name_new">Category Name</string>
+    <string name="add_candidate_new">Add This Candidate</string>
     <string name="candidate_list_new">Candidate List</string>
-    <string name="end_voting_session_button_new">End Voting Session</string>
-    <string name="view_results_button_new">View Results</string>
+    <string name="tips_for_editing">
+        TIP: Press and hold a\n
+        candidates name to edit\n
+        or delete it!
+    </string>
+    <string name="finish_session">Finalize Session</string>
 
     <string name="add_category_title">Add Categories</string>
     <string name="category_count">1/1</string>

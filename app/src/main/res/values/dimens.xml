@@ -6,6 +6,7 @@
     <dimen name="x1.25_normal_button_dimens">60dp</dimen>
     <dimen name="x3_normal_button_dimens">144dp</dimen>
     <dimen name="activity_standard_margin_half">8dp</dimen>
-    <dimen name="list_view_height">250dp</dimen>
+    <dimen name="list_view_short_height">200dp</dimen>
+    <dimen name="list_view_long_height">300dp</dimen>
     <dimen name="list_view_short_width">100dp</dimen>
 </resources>
