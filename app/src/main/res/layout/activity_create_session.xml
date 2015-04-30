@@ -10,7 +10,7 @@
     android:clickable="true"
     android:id="@+id/gridLayout"
     android:longClickable="false"
-    android:background="#fdd835">
+    android:background="@color/holo_gold_light">
 
     <LinearLayout
         android:orientation="horizontal"
