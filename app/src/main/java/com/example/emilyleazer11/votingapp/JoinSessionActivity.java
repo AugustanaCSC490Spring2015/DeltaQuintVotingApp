@@ -45,14 +45,12 @@ public class JoinSessionActivity extends Activity {
     };
 
     public void joinSession() {
-        //Intent intent = new Intent (this, SessionActivity.class);
-        //startActivity(intent);
         try {
             TextView sessionName = (TextView) findViewById(R.id.sessionNameEditText);
             String sessionNameValue = sessionName.getText().toString();
             TextView sessionPass = (TextView) findViewById(R.id.sessionPasswordEditText);
             String passValue = sessionPass.getText().toString();
-            attemptJoinSession(sessionNameValue, passValue);
+            attemptJoinSession(sessionNameValue, passValue, sessionName, sessionPass);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -63,23 +61,36 @@ public class JoinSessionActivity extends Activity {
     }
 
 
-    public void attemptJoinSession(String session,String pass) throws ParseException {
+    public void attemptJoinSession(String session,String pass, TextView sessionName, TextView sessionPass) throws ParseException {
         final String attemptedPass = pass;
+        final TextView sessionNameText = sessionName;
+        final TextView sessionPassText = sessionPass;
         ParseQuery<Session> query = ParseQuery.getQuery("Sessions");
         query.whereEqualTo("session_name", session);
         query.findInBackground(new FindCallback<Session>() {
             public void done(List<Session> sessionList, ParseException e) {
                 if (e == null) {
-                    if ((sessionList.size() != 0) && (sessionList.get(0).isPassCorrect(attemptedPass))) successPull("success");
-                    else successPull("fail");
-                    //this conditional should be changed so if it is true, they should go to the next page
-                    // and if it is false, clear the field and prompt user that user/pass failed
-                   
+                    if ((sessionList.size() != 0) && (sessionList.get(0).isPassCorrect(attemptedPass)))
+                        joinSuccess();
+                    else
+                        joinFail(sessionNameText, sessionPassText);
                 } else {
                     Log.w("session_name", "Error: " + e.getMessage());
                 }
             }
         });
+    }
+
+    public void joinFail(TextView sessionName, TextView sessionPass) {
+        sessionName.setText("");
+        sessionPass.setText("");
+        Toast.makeText(this, "The session or password is incorrect, or does not exist.", Toast.LENGTH_SHORT).show();
+    }
+
+    public void joinSuccess() {
+        Intent intent = new Intent (this, SessionActivity.class);
+        startActivity(intent);
+        //pass the name of the session into the sharedPreferences
     }
 }
 

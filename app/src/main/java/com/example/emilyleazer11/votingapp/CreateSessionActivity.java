@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -94,23 +95,11 @@ public class CreateSessionActivity extends Activity {
         if (newSessionName.equals("") || newSessionPassword.equals("") || newConfirmSessionPassword.equals("") || newAdminPassword.equals("") || newConfirmAdminPassword.equals("")){
             Toast.makeText(this, "Please fill out every field", Toast.LENGTH_SHORT).show();
         } else if (sessionPasswordEqual && adminPasswordEqual) {
-            //add Session Name to database
-            Session newSession = new Session();
-            newSession.setName(newSessionName);
-            newSession.saveInBackground();
-
-            //add Session PW to database
-            newSession.setPass(newSessionPassword);
-            newSession.saveInBackground();
-
-            //add Admin PW to database
-            newSession.setAdminPass(newAdminPassword);
-            newSession.saveInBackground();
-
-            //go to next page
-            Intent intent = new Intent(this, NewCategoryActivity.class);
-            startActivity(intent);
-
+            try {
+                attemptCreateSession(newSessionName, newSessionPassword,newAdminPassword, sessionNameText,sessionPasswordText,sessionConfirmPasswordText, adminPasswordText, adminConfirmPasswordText);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         } else if (!sessionPasswordEqual && adminPasswordEqual){
             Toast.makeText(this, "Session Password not equal. Please type in again.", Toast.LENGTH_SHORT).show();
         } else if (sessionPasswordEqual && !adminPasswordEqual){
@@ -126,22 +115,58 @@ public class CreateSessionActivity extends Activity {
         Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
     }
 
-    public void attemptCreateSession(String session) throws ParseException {
+    public void attemptCreateSession(String session, String newSessionPass, String newAdminPass, EditText sessionNameText,EditText sessionPasswordText, EditText sessionConfirmPasswordText, EditText adminPasswordText, EditText adminConfirmPasswordText) throws ParseException {
+        final String sessionName = session;
+        final String sessionPass = newSessionPass;
+        final String adminPass = newAdminPass;
+        final EditText sessionNameTextField = sessionNameText;
+        final EditText sessionPassTextField = sessionPasswordText;
+        final EditText sessionPassConfirmTextField = sessionConfirmPasswordText;
+        final EditText sessionAdminTextField = adminPasswordText;
+        final EditText sessionAdminConfirmTextField = adminConfirmPasswordText;
         ParseQuery<Session> query = ParseQuery.getQuery("Sessions");
         query.whereEqualTo("session_name", session);
         query.findInBackground(new FindCallback<Session>() {
             public void done(List<Session> sessionList, ParseException e) {
                 if (e == null) {
-                    if (sessionList.size() == 0) successPull("success");
-                    else successPull("fail");
-                    //this conditional should be changed so if it is true, the call to add that session is made
-                    // and if it is false, clear the field and prompt user that the session already exists.
-
+                    if (sessionList.size() == 0)
+                        createSessionSuccess(sessionName,sessionPass,adminPass);
+                    else
+                        createSessionFail(sessionNameTextField, sessionPassTextField, sessionPassConfirmTextField, sessionAdminTextField, sessionAdminConfirmTextField);
                 } else {
                     Log.w("session_name", "Error: " + e.getMessage());
                 }
             }
         });
+    }
+
+    public void createSessionSuccess(String session, String newSessionPass, String newAdminPassword){
+        //add Session Name to database
+        Session newSession = new Session();
+        newSession.setName(newSessionName);
+        newSession.saveInBackground();
+
+        //add Session PW to database
+        newSession.setPass(newSessionPassword);
+        newSession.saveInBackground();
+
+        //add Admin PW to database
+        newSession.setAdminPass(newAdminPassword);
+        newSession.saveInBackground();
+
+        //go to next page
+        Intent intent = new Intent(this, NewCategoryActivity.class);
+        startActivity(intent);
+        //save in sharedPref the session they're in
+    }
+
+    public void createSessionFail(EditText sessionNameTextField, EditText sessionPassTextField, EditText sessionPassConfirmTextField,EditText sessionAdminTextField, EditText sessionAdminConfirmTextField) {
+        sessionNameTextField.setText("");
+        sessionPassTextField.setText("");
+        sessionPassConfirmTextField.setText("");
+        sessionAdminTextField.setText("");
+        sessionAdminConfirmTextField.setText("");
+        Toast.makeText(this, "The session of this name already exists.  Please choose another session name.", Toast.LENGTH_SHORT).show();
     }
 
 }
