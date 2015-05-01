@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".JoinSessionActivity"
+    tools:context=".AdminLoginActivity"
     android:columnCount="1"
     android:rowCount="3"
     android:background="@color/holo_gold_light">

@@ -86,9 +86,5 @@ public class JoinSessionActivity extends Activity {
         startActivity(intent);
         //pass the name of the session into the sharedPreferences
     }
-
-    // HERE FOR A COMMIT
-    public void adminLogin(View view) {
-    }
 }
 
