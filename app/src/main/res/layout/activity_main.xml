@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:text="@string/admin_menu"
             android:id="@+id/adminButton"
-            android:onClick="adminLogin"/>
+            android:onClick="resultsLogin"/>
     </LinearLayout>
 
 </GridLayout>

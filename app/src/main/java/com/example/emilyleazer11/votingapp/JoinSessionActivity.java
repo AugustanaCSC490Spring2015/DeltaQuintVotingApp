@@ -9,24 +9,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.CountCallback;
 import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.List;
 
 
-/**
- * Created by MHanson on 4/17/2015.
- */
 public class JoinSessionActivity extends Activity {
 
 
-    public static final String TAG = "Voting App Activity";
+//    public static final String TAG = "Voting App Activity";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +49,9 @@ public class JoinSessionActivity extends Activity {
         }
     }
 
-    public void successPull(String string) {
-        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
-    }
+//    public void successPull(String string) {
+//        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+//    }
 
 
     public void attemptJoinSession(String session,String pass, TextView sessionName, TextView sessionPass) throws ParseException {
@@ -84,13 +77,18 @@ public class JoinSessionActivity extends Activity {
     public void joinFail(TextView sessionName, TextView sessionPass) {
         sessionName.setText("");
         sessionPass.setText("");
-        Toast.makeText(this, "The session or password is incorrect, or does not exist.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "The session or password is incorrect, or does not exist.",
+                Toast.LENGTH_SHORT).show();
     }
 
     public void joinSuccess() {
         Intent intent = new Intent (this, SessionActivity.class);
         startActivity(intent);
         //pass the name of the session into the sharedPreferences
+    }
+
+    // HERE FOR A COMMIT
+    public void adminLogin(View view) {
     }
 }
 

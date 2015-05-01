@@ -7,9 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-//import com.parse.Parse;
-//import com.parse.ParseObject;
-
 
 public class MainActivity extends ActionBarActivity {
 
@@ -29,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void adminLogin(View view){
+    public void resultsLogin(View view){
         Intent intent = new Intent (this, AdminLoginActivity.class);
         startActivity(intent);
     }

@@ -89,7 +89,8 @@
             android:layout_width="fill_parent"
             android:layout_height="@dimen/x1.25_normal_button_dimens"
             android:text="@string/admin_login_submit"
-            android:id="@+id/joinSessionButton" />
+            android:id="@+id/adminLoginButton"
+            android:onClick="adminLogin" />
     </LinearLayout>
 
 </GridLayout>
