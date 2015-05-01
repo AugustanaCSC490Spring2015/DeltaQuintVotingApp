@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:columnCount="1"
-    android:rowCount="4"
-    android:background="@android:color/darker_gray">
+    android:rowCount="4">
 
     <LinearLayout
         android:orientation="horizontal"
