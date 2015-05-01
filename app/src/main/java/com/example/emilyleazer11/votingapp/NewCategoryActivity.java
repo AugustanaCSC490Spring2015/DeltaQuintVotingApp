@@ -1,7 +1,7 @@
 package com.example.emilyleazer11.votingapp;
 
-import android.app.Activity;
-import android.content.Context;
+// import android.app.Activity;
+// import android.content.Context;
 import android.content.Intent;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -12,10 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+// import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
+// import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
 import java.util.ArrayList;
@@ -24,9 +25,6 @@ import java.util.Collections;
 
 
 
-/**
- * Created by emilyleazer11 on 4/22/2015.
- */
 public class NewCategoryActivity extends ListActivity {
 
     private static final String CANDIDATES = "candidates";
@@ -52,7 +50,7 @@ protected void onCreate(Bundle savedInstanceState) {
         adapter = new ArrayAdapter<String>(this,R.layout.list_item, candidates);
         setListAdapter(adapter);
 
-        Button addCandidateButton = (Button) findViewById(R.id.addCandidateButton);
+        ImageButton addCandidateButton = (ImageButton) findViewById(R.id.addCandidateButton);
         addCandidateButton.setOnClickListener(addCandidateButtonListener);
 
         getListView().setOnItemLongClickListener(candidateLongClickListener);
