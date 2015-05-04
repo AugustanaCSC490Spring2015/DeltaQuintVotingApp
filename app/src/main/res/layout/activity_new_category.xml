@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:columnCount="1"
     android:rowCount="5"
-    android:background="@color/holo_gold_light">
+    android:background="@color/delta_quint_gold">
 
 
     <LinearLayout
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_row="0"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/delta_quint_blue"
         android:padding="@dimen/activity_vertical_margin">
 
         <TextView
@@ -108,7 +108,7 @@
             android:layout_gravity="fill"
             android:layout_weight="1"
             android:clickable="false"
-            android:background="@android:color/darker_gray" />
+            android:background="@color/delta_quint_gray" />
 
         <TextView
             android:layout_width="match_parent"

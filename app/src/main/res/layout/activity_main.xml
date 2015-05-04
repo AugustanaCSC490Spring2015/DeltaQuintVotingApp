@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/activity_vertical_margin"
-        android:background="@android:color/holo_blue_dark">
+        android:background="@color/delta_quint_blue">
 
         <TextView
             android:layout_width="fill_parent"
@@ -56,7 +56,7 @@
         android:rowCount="1"
         android:layout_gravity="center|fill_horizontal|bottom"
         android:orientation="horizontal"
-        android:background="@color/holo_gold_light"
+        android:background="@color/delta_quint_gold"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
@@ -89,7 +89,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/holo_gold_light"
+        android:background="@color/delta_quint_gold"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"

@@ -6,7 +6,7 @@
     tools:context=".AdminLoginActivity"
     android:columnCount="1"
     android:rowCount="3"
-    android:background="@color/holo_gold_light">
+    android:background="@color/delta_quint_gold">
 
     <LinearLayout
         android:orientation="vertical"
@@ -15,7 +15,7 @@
         android:layout_column="0"
         android:layout_row="0"
         android:padding="@dimen/activity_vertical_margin"
-        android:background="@android:color/holo_blue_dark">
+        android:background="@color/delta_quint_blue">
 
         <TextView
             android:layout_width="match_parent"
