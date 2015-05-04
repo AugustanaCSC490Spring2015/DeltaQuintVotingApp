@@ -49,11 +49,6 @@ public class JoinSessionActivity extends Activity {
         }
     }
 
-//    public void successPull(String string) {
-//        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
-//    }
-
-
     public void attemptJoinSession(String session,String pass, TextView sessionName, TextView sessionPass) throws ParseException {
         final String attemptedPass = pass;
         final TextView sessionNameText = sessionName;

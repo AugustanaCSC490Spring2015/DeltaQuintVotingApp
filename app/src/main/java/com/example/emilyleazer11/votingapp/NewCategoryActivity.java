@@ -27,6 +27,7 @@ public class NewCategoryActivity extends ListActivity {
     private SharedPreferences savedCandidates;
     private ArrayList<String> candidates;
     private ArrayAdapter<String> adapter;
+    public String position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,8 @@ public class NewCategoryActivity extends ListActivity {
         Button viewResultsButton = (Button) findViewById(R.id.viewResultsButton);
         viewResultsButton.setOnClickListener(viewResultsClickListener);
 
+        EditText categoryName = (EditText) findViewById(R.id.categoryNameEditText);
+
     }
 
     View.OnClickListener endSessionClickListener = new View.OnClickListener() {
@@ -78,8 +81,7 @@ public class NewCategoryActivity extends ListActivity {
     }
 
     public void launchResultsActivity() {
-        Intent intent = new Intent(this, ResultsActivity.class);
-        startActivity(intent);
+        attemptActivateCategory();
     }
 
 
@@ -116,6 +118,7 @@ public class NewCategoryActivity extends ListActivity {
             candidates.add(candidateName);
             Collections.sort(candidates, String.CASE_INSENSITIVE_ORDER);
             adapter.notifyDataSetChanged();
+            addCandidateToDatabase(candidateName);
         }
     }
 
@@ -232,5 +235,16 @@ public class NewCategoryActivity extends ListActivity {
         );
 
         confirmBuilder.create().show(); // display AlertDialog
+    }
+
+    public void addCandidateToDatabase(String candidate) {
+        Candidate newCandidate = new Candidate();
+        newCandidate.setName(candidate);
+        newCandidate.setPosition("Treasurer");
+    }
+    public void attemptActivateCategory() {
+
+        Intent intent = new Intent(this, ResultsActivity.class);
+        startActivity(intent);
     }
 }
