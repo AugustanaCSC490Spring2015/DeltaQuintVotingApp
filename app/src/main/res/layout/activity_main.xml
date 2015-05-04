@@ -43,7 +43,7 @@
             android:layout_row="0"
             android:longClickable="false"
             android:layout_gravity="center"
-            android:src="@drawable/greek_voter_logo"
+            android:src="@drawable/greek_voter_logo_v2"
             android:scaleType="fitCenter" />
     </GridLayout>
 
