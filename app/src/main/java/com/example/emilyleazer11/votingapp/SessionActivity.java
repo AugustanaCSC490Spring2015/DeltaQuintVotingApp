@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -22,10 +23,23 @@ public class SessionActivity extends Activity {
     //right now i have itset to "NewSession"
     public final String sessionName = "NewSession";
     public final String currentCategory = "Treasurer";
+    Intent starterIntent = this.getIntent();
+    public final String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
+    //public final String categoryIntent = starterIntent.getStringExtra(JoinSessionActivity.CATEGORY_EXTRA):
+
     protected void onCreate(Bundle savedInstanceState){
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
+
+        //Intent starterIntent = this.getIntent();
+        //String sessionName = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
+
+
+        TextView category = (TextView) this.findViewById(R.id.categoryName);
+        //category.setText(categoryIntent);
+        TextView session = (TextView) this.findViewById(R.id.sessionName);
+        session.setText(sessionIntent);
 
         Button submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(submitClickListener);

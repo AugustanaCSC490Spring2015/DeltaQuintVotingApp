@@ -18,8 +18,9 @@ import java.util.List;
 
 public class JoinSessionActivity extends Activity {
 
+    public static final String SESSION_EXTRA = "Session";
 
-//    public static final String TAG = "Voting App Activity";
+    //public static final String TAG = "Voting App Activity";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,11 @@ public class JoinSessionActivity extends Activity {
         }
     }
 
+//    public void successPull(String string) {
+//        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+//    }
+
+
     public void attemptJoinSession(String session,String pass, TextView sessionName, TextView sessionPass) throws ParseException {
         final String attemptedPass = pass;
         final TextView sessionNameText = sessionName;
@@ -59,7 +65,7 @@ public class JoinSessionActivity extends Activity {
             public void done(List<Session> sessionList, ParseException e) {
                 if (e == null) {
                     if ((sessionList.size() != 0) && (sessionList.get(0).isPassCorrect(attemptedPass)))
-                        joinSuccess();
+                        joinSuccess(sessionNameText.getText().toString());
                     else
                         joinFail(sessionNameText, sessionPassText);
                 } else {
@@ -76,8 +82,10 @@ public class JoinSessionActivity extends Activity {
                 Toast.LENGTH_SHORT).show();
     }
 
-    public void joinSuccess() {
+    public void joinSuccess(String sessionName) {
         Intent intent = new Intent (this, SessionActivity.class);
+        intent.putExtra(SESSION_EXTRA, sessionName);
+        //intent.putExtra()
         startActivity(intent);
         //pass the name of the session into the sharedPreferences
     }
