@@ -83,6 +83,7 @@
     <string name="refresh">Refresh Page</string>
     <string name="back_to_home">Home</string>
     <string name="delete_session">Delete this session</string>
+    <string name="add_category">Add Category</string>
 
 
 </resources>

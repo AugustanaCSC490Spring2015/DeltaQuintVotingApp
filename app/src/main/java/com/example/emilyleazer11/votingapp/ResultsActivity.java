@@ -32,4 +32,12 @@ public class ResultsActivity extends Activity{
         startActivity(intent);
     }
 
+    public void addNewCategory(View view) {
+        //
+        // Add code to deactivate current session and add in the new session
+        //
+        Intent intent = new Intent(this, NewCategoryActivity.class);
+        startActivity(intent);
+    }
+
 }
