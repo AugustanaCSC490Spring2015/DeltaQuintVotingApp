@@ -43,4 +43,8 @@ public class Candidate extends ParseObject {
         put("vote_count",count);
     }
 
+    public void setActive(Boolean active) {
+        put("active",active);
+    }
+
 }

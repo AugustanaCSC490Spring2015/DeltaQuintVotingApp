@@ -27,7 +27,8 @@ public class NewCategoryActivity extends ListActivity {
     private SharedPreferences savedCandidates;
     private ArrayList<String> candidates;
     private ArrayAdapter<String> adapter;
-    public String position;
+    public String position = "Treasurer";
+    public String session = "TestSession";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +56,6 @@ public class NewCategoryActivity extends ListActivity {
 
         Button viewResultsButton = (Button) findViewById(R.id.viewResultsButton);
         viewResultsButton.setOnClickListener(viewResultsClickListener);
-
-        EditText categoryName = (EditText) findViewById(R.id.categoryNameEditText);
 
     }
 
@@ -240,10 +239,11 @@ public class NewCategoryActivity extends ListActivity {
     public void addCandidateToDatabase(String candidate) {
         Candidate newCandidate = new Candidate();
         newCandidate.setName(candidate);
-        newCandidate.setPosition("Treasurer");
+        newCandidate.setPosition(position);
+        newCandidate.setSession(session);
+     
     }
     public void attemptActivateCategory() {
-
         Intent intent = new Intent(this, ResultsActivity.class);
         startActivity(intent);
     }
