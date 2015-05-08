@@ -19,6 +19,7 @@ import java.util.List;
 public class JoinSessionActivity extends Activity {
 
     public static final String SESSION_EXTRA = "Session";
+    public static final String CATEGORY_EXTRA = "Category";
 
     //public static final String TAG = "Voting App Activity";
 
@@ -84,10 +85,14 @@ public class JoinSessionActivity extends Activity {
 
     public void joinSuccess(String sessionName) {
         Intent intent = new Intent (this, SessionActivity.class);
+
+        //REED I NEED HELP WITH THIS ---> grab the name of the active category that admin user began and save as categoryName variable
+        String categoryName = "";
+
+
         intent.putExtra(SESSION_EXTRA, sessionName);
-        //intent.putExtra()
+        intent.putExtra(CATEGORY_EXTRA, categoryName);
         startActivity(intent);
-        //pass the name of the session into the sharedPreferences
     }
 }
 
