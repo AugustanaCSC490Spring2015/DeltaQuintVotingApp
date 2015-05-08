@@ -85,5 +85,9 @@
     <string name="delete_session">Delete this session</string>
     <string name="add_category">Add Category</string>
 
+    <string name="voting_user_title">Voting in Progress...</string>
+
+
+
 
 </resources>
