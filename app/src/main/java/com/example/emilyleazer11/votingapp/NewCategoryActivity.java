@@ -29,15 +29,18 @@ import java.util.List;
 
 
 public class NewCategoryActivity extends ListActivity {
+    Intent starterIntent = this.getIntent();
+    public final String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
+    private String categoryName;
+
+
 
     private static final String CANDIDATES = "candidates";
     private EditText candidateEditText;
     private SharedPreferences savedCandidates;
     private ArrayList<String> candidates;
     private ArrayAdapter<String> adapter;
-    private String categoryName;
-    public String position = "Treasurer";
-    public String session = "TestSession";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +119,9 @@ public class NewCategoryActivity extends ListActivity {
         @Override
         public void onClick(View v) {
             if (candidateEditText.getText().length() > 0) {
-                addCandidate(candidateEditText.getText().toString());
+                EditText categoryText = (EditText) findViewById(R.id.categoryNameEditText);
+                categoryName = categoryText.getText().toString();
+                addCandidate(categoryName);
                 candidateEditText.setText("");
             } else {
                 // create a new AlertDialog Builder
@@ -270,15 +275,15 @@ public class NewCategoryActivity extends ListActivity {
     public void addCandidateToDatabase(String candidate) {
         Candidate newCandidate = new Candidate();
         newCandidate.setName(candidate);
-        newCandidate.setPosition(position);
-        newCandidate.setSession(session);
+        newCandidate.setPosition(categoryName);
+        newCandidate.setSession(sessionIntent);
         newCandidate.setVoteCount(0);
         newCandidate.setActive(Boolean.FALSE);
         newCandidate.saveInBackground();
     }
 
     public void attemptActivateCategory() {
-        activateCurrentPosition(position);
+        activateCurrentPosition(categoryName);
         Intent intent = new Intent(this, ResultsActivity.class);
         startActivity(intent);
     }

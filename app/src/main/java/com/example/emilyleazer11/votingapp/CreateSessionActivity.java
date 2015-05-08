@@ -22,6 +22,7 @@ import java.util.List;
  */
 public class CreateSessionActivity extends Activity {
 
+    public static final String SESSION_EXTRA = "Session";
     public static final String TAG = "VotingApp Activity";
     public String newSessionName;
     public String newSessionPassword;
@@ -156,8 +157,8 @@ public class CreateSessionActivity extends Activity {
 
         //go to next page
         Intent intent = new Intent(this, NewCategoryActivity.class);
+        intent.putExtra(SESSION_EXTRA, session);
         startActivity(intent);
-        //save in sharedPref the session they're in
     }
 
     public void createSessionFail(EditText sessionNameTextField, EditText sessionPassTextField, EditText sessionPassConfirmTextField,EditText sessionAdminTextField, EditText sessionAdminConfirmTextField) {

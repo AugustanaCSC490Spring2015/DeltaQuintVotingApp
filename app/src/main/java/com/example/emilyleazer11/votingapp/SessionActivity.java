@@ -19,8 +19,6 @@ public class SessionActivity extends Activity {
     //there will need to be some variable, maybe passed by the intent, or by the sharedPrefManager
     // that will define what sesion this user is logged into and what category is up
     //right now i have itset to "NewSession"
-    public final String sessionName = "NewSession";
-    public final String currentCategory = "Treasurer";
     Intent starterIntent = this.getIntent();
     public final String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
     public final String categoryIntent = starterIntent.getStringExtra(JoinSessionActivity.CATEGORY_EXTRA);
