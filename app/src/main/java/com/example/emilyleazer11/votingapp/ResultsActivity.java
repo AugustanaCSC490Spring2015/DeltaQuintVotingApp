@@ -4,14 +4,26 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class ResultsActivity extends Activity{
 
+    Intent starterIntent = this.getIntent();
+    public final String sessionIntent = starterIntent.getStringExtra(NewCategoryActivity.SESSION_EXTRA);
+    public final String categoryIntent = starterIntent.getStringExtra(NewCategoryActivity.CATEGORY_EXTRA);
+
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+
+        TextView sessionName = (TextView) this.findViewById(R.id.sessionNameEditText);
+        sessionName.setText(sessionIntent);
+
+        TextView categoryName = (TextView) this.findViewById(R.id.categoryNameEditText);
+        categoryName.setText(categoryIntent);
     }
 
     public void returnHome(View view){

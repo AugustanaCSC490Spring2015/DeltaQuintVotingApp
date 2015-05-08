@@ -32,6 +32,8 @@ public class NewCategoryActivity extends ListActivity {
     Intent starterIntent = this.getIntent();
     public final String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
     private String categoryName;
+    public static final String SESSION_EXTRA = "Session";
+    public static final String CATEGORY_EXTRA = "Category";
 
 
 
@@ -285,6 +287,8 @@ public class NewCategoryActivity extends ListActivity {
     public void attemptActivateCategory() {
         activateCurrentPosition(categoryName);
         Intent intent = new Intent(this, ResultsActivity.class);
+        intent.putExtra(SESSION_EXTRA, sessionIntent);
+        intent.putExtra(CATEGORY_EXTRA, categoryName);
         startActivity(intent);
     }
 
