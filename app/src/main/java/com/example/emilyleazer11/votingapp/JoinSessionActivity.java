@@ -20,6 +20,7 @@ public class JoinSessionActivity extends Activity {
 
     public static final String SESSION_EXTRA = "Session";
     public static final String CATEGORY_EXTRA = "Category";
+    public static String activePosition;
 
     //public static final String TAG = "Voting App Activity";
 
@@ -87,12 +88,31 @@ public class JoinSessionActivity extends Activity {
         Intent intent = new Intent (this, SessionActivity.class);
 
         //REED I NEED HELP WITH THIS ---> grab the name of the active category that admin user began and save as categoryName variable
-        String categoryName = "";
-
-
+        String categoryName = getActivePosition();
+        //done.
         intent.putExtra(SESSION_EXTRA, sessionName);
         intent.putExtra(CATEGORY_EXTRA, categoryName);
         startActivity(intent);
+    }
+
+    public String getActivePosition() {
+        ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
+        actives.whereEqualTo("active",true);
+        //will need to make this specific to the session we're in
+        actives.findInBackground(new FindCallback<Candidate>() {
+            public void done(List<Candidate> activeCandidates, ParseException e) {
+                if (e == null) {
+                    setActivePosition(activeCandidates.get(0).getPosition());
+                } else {
+                    Log.w("session_name", "Error: " + e.getMessage());
+                }
+            }
+        });
+        return activePosition;
+    }
+
+    public void setActivePosition(String newPosition) {
+        activePosition = newPosition;
     }
 }
 
