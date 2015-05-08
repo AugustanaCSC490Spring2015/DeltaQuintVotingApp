@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnCount="1"
-    android:rowCount="5"
+    android:rowCount="4"
     android:background="@color/delta_quint_gold">
 
 
@@ -26,10 +26,13 @@
     </LinearLayout>
 
     <GridLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="1"
-        android:rowCount="1"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:layout_column="0"
+        android:layout_row="1"
+        android:layout_gravity="center_horizontal"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_standard_margin_half">
@@ -40,20 +43,19 @@
             android:id="@+id/categoryNameEditText"
             android:layout_column="0"
             android:layout_row="0"
-            android:layout_gravity="fill_horizontal"
-            android:hint="@string/category_name_new" />
-    </GridLayout>
+            android:layout_gravity="fill_horizontal|bottom"
+            android:hint="@string/category_name_new"
+            android:layout_columnWeight="1" />
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="1"
-        android:layout_column="0"
-        android:layout_row="2"
-        android:layout_gravity="center_horizontal"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addCategoryNameButton"
+            android:layout_gravity="right"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:src="@drawable/add_button_v4"
+            android:onClick="addCategoryName" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -61,19 +63,21 @@
             android:id="@+id/candidateEditText"
             android:hint="@string/candidate_name_prompt_new"
             android:layout_column="0"
-            android:layout_row="0"
+            android:layout_row="1"
             android:layout_gravity="fill_horizontal|bottom"
-            android:layout_columnWeight="1" />
+            android:layout_columnWeight="1"
+            android:enabled="false" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/addCandidateButton"
             android:layout_column="1"
-            android:layout_row="0"
+            android:layout_row="1"
             android:layout_gravity="right"
             android:src="@drawable/add_button_v4"
-            android:adjustViewBounds="false" />
+            android:adjustViewBounds="false"
+            android:enabled="false" />
 
     </GridLayout>
 
@@ -82,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_row="3"
+        android:layout_row="2"
         android:columnCount="1"
         android:rowCount="2"
         android:layout_gravity="fill"
@@ -127,7 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_row="4"
+        android:layout_row="3"
         android:columnCount="2"
         android:rowCount="1"
         android:layout_gravity="fill_horizontal|bottom">
@@ -148,7 +152,8 @@
             android:id="@+id/viewResultsButton"
             android:layout_column="1"
             android:layout_row="0"
-            android:layout_gravity="fill_horizontal|bottom" />
+            android:layout_gravity="fill_horizontal|bottom"
+            android:enabled="false" />
     </GridLayout>
 
 </GridLayout>

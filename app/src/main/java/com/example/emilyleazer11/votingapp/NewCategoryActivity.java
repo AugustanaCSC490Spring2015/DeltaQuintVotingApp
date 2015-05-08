@@ -17,6 +17,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemLongClickListener;
 
+import org.w3c.dom.Text;
+
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -33,6 +35,7 @@ public class NewCategoryActivity extends ListActivity {
     private SharedPreferences savedCandidates;
     private ArrayList<String> candidates;
     private ArrayAdapter<String> adapter;
+    private String categoryName;
     public String position = "Treasurer";
     public String session = "TestSession";
 
@@ -84,6 +87,25 @@ public class NewCategoryActivity extends ListActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void addCategoryName(View view) {
+        // code to add the category name to database
+        // categoryName = ;
+        // Disables the Category Name Fields
+        EditText tempA  = (EditText) findViewById(R.id.categoryNameEditText);
+        tempA.setEnabled(false);
+        ImageButton tempB  = (ImageButton) findViewById(R.id.addCategoryNameButton);
+        tempB.setEnabled(false);
+        // Enables the Candidate Name Fields
+        tempA  = (EditText) findViewById(R.id.candidateEditText);
+        tempA.setEnabled(true);
+        tempB  = (ImageButton) findViewById(R.id.addCandidateButton);
+        tempB.setEnabled(true);
+        Button tempC  = (Button) findViewById(R.id.viewResultsButton);
+        tempC.setEnabled(true);
+    }
+
+
 
     public void launchResultsActivity() {
         attemptActivateCategory();
