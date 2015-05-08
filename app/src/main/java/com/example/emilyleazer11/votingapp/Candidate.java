@@ -37,6 +37,10 @@ public class Candidate extends ParseObject {
         put("session_name",session);
     }
 
+    public void setVoteCount(int count) {
+        put("vote_count",count);
+    }
+
     public void addOneVote(String session) {
         int count = getVotes();
         count++;

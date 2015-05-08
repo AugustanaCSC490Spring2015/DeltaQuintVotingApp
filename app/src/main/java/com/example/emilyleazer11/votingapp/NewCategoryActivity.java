@@ -7,6 +7,7 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.AdapterView;
@@ -16,8 +17,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemLongClickListener;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 public class NewCategoryActivity extends ListActivity {
@@ -182,6 +188,7 @@ public class NewCategoryActivity extends ListActivity {
                     // called when "Cancel" Button is clicked
                     public void onClick(DialogInterface dialog, int id) {
                         candidates.remove(candidate); // remove tag from quantities
+                        removeCandidateFromDatabase(candidate);
 
                         // get SharedPreferences.Editor to remove saved candidate
                         SharedPreferences.Editor preferencesEditor = savedCandidates.edit();
@@ -229,6 +236,8 @@ public class NewCategoryActivity extends ListActivity {
 
                         // rebind candidate ArrayList to ListView to show updated list
                         adapter.notifyDataSetChanged();
+
+                        removeCandidateFromDatabase(candidate);
                     }
                 }
         );
@@ -241,10 +250,48 @@ public class NewCategoryActivity extends ListActivity {
         newCandidate.setName(candidate);
         newCandidate.setPosition(position);
         newCandidate.setSession(session);
-     
+        newCandidate.setVoteCount(0);
+        newCandidate.setActive(Boolean.FALSE);
+        newCandidate.saveInBackground();
     }
+
     public void attemptActivateCategory() {
+        activateCurrentPosition(position);
         Intent intent = new Intent(this, ResultsActivity.class);
         startActivity(intent);
     }
+
+    public void activateCurrentPosition(String position) {
+        ParseQuery<Candidate> activatePosition = ParseQuery.getQuery("Candidate");
+        activatePosition.whereEqualTo("position",position);
+        activatePosition.findInBackground(new FindCallback<Candidate>() {
+            public void done(List<Candidate> candidatesToActivate, ParseException e) {
+                if (e == null) {
+                    for (Candidate candidate: candidatesToActivate) {
+                        candidate.setActive(Boolean.TRUE);
+                        candidate.saveInBackground();
+                    }
+                } else {
+                    Log.w("session_name", "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+    public void removeCandidateFromDatabase(String candidate) {
+        ParseQuery<Candidate> removeCandidate = ParseQuery.getQuery("Candidate");
+        removeCandidate.whereEqualTo("candidate_name", candidate);
+        removeCandidate.findInBackground(new FindCallback<Candidate>() {
+            public void done(List<Candidate> candidatesToDelete, ParseException e) {
+                if (e == null) {
+                   for (Candidate candidate: candidatesToDelete) {
+                       candidate.deleteInBackground();
+                    }
+                } else {
+                    Log.w("session_name", "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
 }
