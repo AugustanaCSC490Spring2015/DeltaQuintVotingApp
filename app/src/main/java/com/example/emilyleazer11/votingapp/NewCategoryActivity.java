@@ -31,11 +31,11 @@ import java.util.List;
 public class NewCategoryActivity extends ListActivity {
     Intent starterIntent = this.getIntent();
     public final String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
+    //error here, Attempt to invoke virtual method 'getStringExtra' on a null object reference
+    
     private String categoryName;
     public static final String SESSION_EXTRA = "Session";
     public static final String CATEGORY_EXTRA = "Category";
-
-
 
     private static final String CANDIDATES = "candidates";
     private EditText candidateEditText;
@@ -288,13 +288,14 @@ public class NewCategoryActivity extends ListActivity {
         activateCurrentPosition(categoryName);
         Intent intent = new Intent(this, ResultsActivity.class);
         intent.putExtra(SESSION_EXTRA, sessionIntent);
-        intent.putExtra(CATEGORY_EXTRA, categoryName);
+        //intent.putExtra(CATEGORY_EXTRA, categoryName);
         startActivity(intent);
     }
 
     public void activateCurrentPosition(String position) {
         ParseQuery<Candidate> activatePosition = ParseQuery.getQuery("Candidate");
         activatePosition.whereEqualTo("position",position);
+        activatePosition.whereEqualTo("session_name",sessionIntent);
         activatePosition.findInBackground(new FindCallback<Candidate>() {
             public void done(List<Candidate> candidatesToActivate, ParseException e) {
                 if (e == null) {
@@ -312,6 +313,7 @@ public class NewCategoryActivity extends ListActivity {
     public void removeCandidateFromDatabase(String candidate) {
         ParseQuery<Candidate> removeCandidate = ParseQuery.getQuery("Candidate");
         removeCandidate.whereEqualTo("candidate_name", candidate);
+        removeCandidate.whereEqualTo("session_name",sessionIntent);
         removeCandidate.findInBackground(new FindCallback<Candidate>() {
             public void done(List<Candidate> candidatesToDelete, ParseException e) {
                 if (e == null) {
