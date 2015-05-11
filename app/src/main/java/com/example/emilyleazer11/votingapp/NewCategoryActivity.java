@@ -29,13 +29,13 @@ import java.util.List;
 
 
 public class NewCategoryActivity extends ListActivity {
-    Intent starterIntent = this.getIntent();
-    public final String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
-    //error here, Attempt to invoke virtual method 'getStringExtra' on a null object reference
-    
+
+
     private String categoryName;
+    //private String candidateName;
     public static final String SESSION_EXTRA = "Session";
-    public static final String CATEGORY_EXTRA = "Category";
+    public static final String TAG = "Voting App";
+
 
     private static final String CANDIDATES = "candidates";
     private EditText candidateEditText;
@@ -48,6 +48,11 @@ public class NewCategoryActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_category);
+
+        Intent starterIntent = this.getIntent();
+        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
+
+        Log.w(TAG, "Got session = " + sessionIntent);
 
         Button endVotingSessionButton = (Button) findViewById(R.id.endVotingSessionButton);
         endVotingSessionButton.setOnClickListener(endSessionClickListener);
@@ -123,7 +128,11 @@ public class NewCategoryActivity extends ListActivity {
             if (candidateEditText.getText().length() > 0) {
                 EditText categoryText = (EditText) findViewById(R.id.categoryNameEditText);
                 categoryName = categoryText.getText().toString();
-                addCandidate(categoryName);
+
+                EditText candidateText = (EditText) findViewById(R.id.candidateEditText);
+                String candidateName = candidateText.getText().toString();
+
+                addCandidate(candidateName);
                 candidateEditText.setText("");
             } else {
                 // create a new AlertDialog Builder
@@ -275,6 +284,8 @@ public class NewCategoryActivity extends ListActivity {
     }
 
     public void addCandidateToDatabase(String candidate) {
+        Intent starterIntent = this.getIntent();
+        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
         Candidate newCandidate = new Candidate();
         newCandidate.setName(candidate);
         newCandidate.setPosition(categoryName);
@@ -285,14 +296,17 @@ public class NewCategoryActivity extends ListActivity {
     }
 
     public void attemptActivateCategory() {
+        Intent starterIntent = this.getIntent();
+        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
         activateCurrentPosition(categoryName);
         Intent intent = new Intent(this, ResultsActivity.class);
         intent.putExtra(SESSION_EXTRA, sessionIntent);
-        //intent.putExtra(CATEGORY_EXTRA, categoryName);
         startActivity(intent);
     }
 
     public void activateCurrentPosition(String position) {
+        Intent starterIntent = this.getIntent();
+        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
         ParseQuery<Candidate> activatePosition = ParseQuery.getQuery("Candidate");
         activatePosition.whereEqualTo("position",position);
         activatePosition.whereEqualTo("session_name",sessionIntent);
@@ -311,6 +325,8 @@ public class NewCategoryActivity extends ListActivity {
     }
 
     public void removeCandidateFromDatabase(String candidate) {
+        Intent starterIntent = this.getIntent();
+        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
         ParseQuery<Candidate> removeCandidate = ParseQuery.getQuery("Candidate");
         removeCandidate.whereEqualTo("candidate_name", candidate);
         removeCandidate.whereEqualTo("session_name",sessionIntent);

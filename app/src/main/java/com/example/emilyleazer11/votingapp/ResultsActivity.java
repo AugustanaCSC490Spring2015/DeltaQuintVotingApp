@@ -17,22 +17,26 @@ import java.util.List;
 
 public class ResultsActivity extends Activity{
 
-    Intent starterIntent = this.getIntent();
-    public final String sessionIntent = starterIntent.getStringExtra(NewCategoryActivity.SESSION_EXTRA);
-    public final String categoryIntent = starterIntent.getStringExtra(NewCategoryActivity.CATEGORY_EXTRA);
-    public String activePosition;
-
+    public final String TAG = "Voting App";
+    private String activePosition;
 
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        TextView sessionName = (TextView) this.findViewById(R.id.sessionNameEditText);
+        Intent starterIntent = this.getIntent();
+        String sessionIntent = starterIntent.getStringExtra(NewCategoryActivity.SESSION_EXTRA);
+
+        TextView sessionName = (TextView) this.findViewById(R.id.sessionNameTitle);
         sessionName.setText(sessionIntent);
 
-        TextView categoryName = (TextView) this.findViewById(R.id.categoryNameEditText);
-        categoryName.setText(getActivePosition());
+        getActivePosition();
+        Log.w(TAG, "activePosition in onCreate= " + activePosition);
+        TextView categoryName = (TextView) this.findViewById(R.id.categoryTitle);
+        categoryName.setText(activePosition);
+        Log.w(TAG, "got categoryName = " + categoryName.getText().toString());
     }
 
     public void returnHome(View view){
@@ -61,7 +65,9 @@ public class ResultsActivity extends Activity{
         startActivity(intent);
     }
 
-    public String getActivePosition() {
+    public void getActivePosition() {
+        Intent starterIntent = this.getIntent();
+        String sessionIntent = starterIntent.getStringExtra(NewCategoryActivity.SESSION_EXTRA);
         ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
         actives.whereEqualTo("active",true);
         actives.whereEqualTo("session_name",sessionIntent);
@@ -69,12 +75,15 @@ public class ResultsActivity extends Activity{
                     public void done(List<Candidate> activeCandidates, ParseException e) {
                         if (e == null) {
                             setActivePosition(activeCandidates.get(0).getPosition());
+                            Log.w(TAG, "activePosition = " + activePosition);
+                            Log.w(TAG, "value of first string = " + activeCandidates.get(0).getPosition());
                         } else {
                             Log.w("session_name", "Error: " + e.getMessage());
                         }
                     }
                 });
-        return activePosition;
+        TextView categoryName = (TextView) this.findViewById(R.id.categoryTitle);
+        categoryName.setText(activePosition);
     }
 
     public void setActivePosition(String newPosition) {

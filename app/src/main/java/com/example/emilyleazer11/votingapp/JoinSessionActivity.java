@@ -19,7 +19,7 @@ import java.util.List;
 public class JoinSessionActivity extends Activity {
 
     public static final String SESSION_EXTRA = "Session";
-    public static final String CATEGORY_EXTRA = "Category";
+
     public static String activePosition;
 
     //public static final String TAG = "Voting App Activity";
@@ -91,7 +91,6 @@ public class JoinSessionActivity extends Activity {
         String categoryName = getActivePosition();
         //done.
         intent.putExtra(SESSION_EXTRA, sessionName);
-        intent.putExtra(CATEGORY_EXTRA, categoryName);
         startActivity(intent);
     }
 

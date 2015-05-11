@@ -19,17 +19,16 @@ public class SessionActivity extends Activity {
     //there will need to be some variable, maybe passed by the intent, or by the sharedPrefManager
     // that will define what sesion this user is logged into and what category is up
     //right now i have itset to "NewSession"
-    Intent starterIntent = this.getIntent();
-    public final String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
-    public final String categoryIntent = starterIntent.getStringExtra(JoinSessionActivity.CATEGORY_EXTRA);
+
 
     protected void onCreate(Bundle savedInstanceState){
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
 
-        TextView category = (TextView) this.findViewById(R.id.categoryName);
-        category.setText(categoryIntent);
+        Intent starterIntent = this.getIntent();
+        String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
+
         TextView session = (TextView) this.findViewById(R.id.sessionName);
         session.setText(sessionIntent);
 
@@ -54,13 +53,16 @@ public class SessionActivity extends Activity {
 
     //query: pul all candidates of one session and one category
     public void populateCandidates() {
+        Intent starterIntent = this.getIntent();
+        String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
+
         ParseQuery<Candidate> query = ParseQuery.getQuery("Candidates");
         query.whereEqualTo("session_name", sessionIntent);
-        query.whereEqualTo("position", categoryIntent);
+        //query.whereEqualTo("position", categoryIntent);
         query.findInBackground(new FindCallback<Candidate>() {
             public void done(List<Candidate> candidateList, ParseException e) {
                 if (e == null) {
-                    fillList(candidateList, categoryIntent);
+                    //fillList(candidateList, categoryIntent);
                     //no error
                 } else {
                     Log.w("session_name", "Error: " + e.getMessage());
