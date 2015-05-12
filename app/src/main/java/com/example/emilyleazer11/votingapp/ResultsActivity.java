@@ -24,6 +24,7 @@ public class ResultsActivity extends ListActivity {
     public ArrayList<String> listOfCandidates;
     private String activePosition;
     private ArrayAdapter<String> adapter;
+    private TextView resultList;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,6 +37,8 @@ public class ResultsActivity extends ListActivity {
 
         TextView sessionName = (TextView) this.findViewById(R.id.sessionNameTitle);
         sessionName.setText(sessionIntent);
+
+        resultList = (TextView) this.findViewById(R.id.textView3);
 
         final TextView categoryName = (TextView) this.findViewById(R.id.categoryTitle);
         ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
@@ -58,7 +61,7 @@ public class ResultsActivity extends ListActivity {
             public void done(List<Candidate> activeCandidates, ParseException e) {
                 if (e == null) {
                     for (Candidate candidate:activeCandidates){
-                        listOfCandidates.add(candidate.getCandidateName());
+                        resultList.setText(candidate.getCandidateName());
                     }
                 } else {
                     Log.w("session_name", "Error: " + e.getMessage());
@@ -66,9 +69,9 @@ public class ResultsActivity extends ListActivity {
             }
         });
 
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item, listOfCandidates);
-        setListAdapter(adapter);
-        adapter.notifyDataSetChanged();
+//        adapter = new ArrayAdapter<String>(this, R.layout.list_item, listOfCandidates);
+//        setListAdapter(adapter);
+//        adapter.notifyDataSetChanged();
 
 
     }

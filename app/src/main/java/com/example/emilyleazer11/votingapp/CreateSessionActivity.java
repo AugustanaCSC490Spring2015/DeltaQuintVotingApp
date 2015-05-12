@@ -144,11 +144,11 @@ public class CreateSessionActivity extends Activity {
     public void createSessionSuccess(String session, String newSessionPass, String newAdminPassword){
         //add Session Name to database
         Session newSession = new Session();
-        newSession.setName(newSessionName);
+        newSession.setName(session);
         newSession.saveInBackground();
 
         //add Session PW to database
-        newSession.setPass(newSessionPassword);
+        newSession.setPass(newSessionPass);
         newSession.saveInBackground();
 
         //add Admin PW to database
