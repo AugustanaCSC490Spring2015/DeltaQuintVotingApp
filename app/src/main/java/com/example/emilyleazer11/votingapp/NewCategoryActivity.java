@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -42,7 +43,7 @@ public class NewCategoryActivity extends ListActivity {
     private SharedPreferences savedCandidates;
     private ArrayList<String> candidates;
     private ArrayAdapter<String> adapter;
-
+    private boolean ready = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -299,9 +300,34 @@ public class NewCategoryActivity extends ListActivity {
         Intent starterIntent = this.getIntent();
         String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
         activateCurrentPosition(categoryName);
-        Intent intent = new Intent(this, ResultsActivity.class);
-        intent.putExtra(SESSION_EXTRA, sessionIntent);
-        startActivity(intent);
+        checkReady();
+        if (ready) {
+            Intent intent = new Intent(this, ResultsActivity.class);
+            intent.putExtra(SESSION_EXTRA, sessionIntent);
+            startActivity(intent);
+        } else {
+            Toast toast = Toast.makeText(this, "Please Wait", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    public void checkReady() {
+        Intent starterIntent = this.getIntent();
+        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
+        ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
+        actives.whereEqualTo("active",true);
+        actives.whereEqualTo("session_name",sessionIntent);
+        actives.findInBackground(new FindCallback<Candidate>() {
+            public void done(List<Candidate> activeCandidates, ParseException e) {
+                if (e == null) {
+                    if (activeCandidates.size() > 0) {
+                        setReady();
+                    }
+                } else {
+                    Log.w("session_name", "Error: " + e.getMessage());
+                }
+            }
+        });
     }
 
     public void activateCurrentPosition(String position) {
@@ -313,7 +339,7 @@ public class NewCategoryActivity extends ListActivity {
         activatePosition.findInBackground(new FindCallback<Candidate>() {
             public void done(List<Candidate> candidatesToActivate, ParseException e) {
                 if (e == null) {
-                    for (Candidate candidate: candidatesToActivate) {
+                    for (Candidate candidate : candidatesToActivate) {
                         candidate.setActive(Boolean.TRUE);
                         candidate.saveInBackground();
                     }
@@ -343,4 +369,7 @@ public class NewCategoryActivity extends ListActivity {
         });
     }
 
+    public void setReady() {
+        ready = true;
+    }
 }
