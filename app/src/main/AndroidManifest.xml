@@ -31,6 +31,8 @@
             android:name=".AdminLoginActivity"/>
         <activity
             android:name=".ResultsActivity"/>
+        <activity
+            android:name=".ResultsActivityAdmin"/>
 
 
     </application>

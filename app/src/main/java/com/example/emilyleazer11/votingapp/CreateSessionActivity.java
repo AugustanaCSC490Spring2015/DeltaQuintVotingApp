@@ -112,10 +112,6 @@ public class CreateSessionActivity extends Activity {
     }
 
 
-    public void successPull(String string) {
-        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
-    }
-
     public void attemptCreateSession(String session, String newSessionPass, String newAdminPass, EditText sessionNameText,EditText sessionPasswordText, EditText sessionConfirmPasswordText, EditText adminPasswordText, EditText adminConfirmPasswordText) throws ParseException {
         final String sessionName = session;
         final String sessionPass = newSessionPass;
