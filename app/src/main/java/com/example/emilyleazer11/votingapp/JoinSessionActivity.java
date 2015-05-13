@@ -19,7 +19,7 @@ import java.util.List;
 public class JoinSessionActivity extends Activity {
 
     public static final String SESSION_EXTRA = "Session";
-
+    public static String session;
     public static String activePosition;
 
     //public static final String TAG = "Voting App Activity";
@@ -52,12 +52,8 @@ public class JoinSessionActivity extends Activity {
         }
     }
 
-//    public void successPull(String string) {
-//        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
-//    }
 
-
-    public void attemptJoinSession(String session,String pass, TextView sessionName, TextView sessionPass) throws ParseException {
+    public void attemptJoinSession(String session, String pass, TextView sessionName, TextView sessionPass) throws ParseException {
         final String attemptedPass = pass;
         final TextView sessionNameText = sessionName;
         final TextView sessionPassText = sessionPass;
@@ -86,29 +82,26 @@ public class JoinSessionActivity extends Activity {
 
     public void joinSuccess(String sessionName) {
         Intent intent = new Intent (this, SessionActivity.class);
-
-        //REED I NEED HELP WITH THIS ---> grab the name of the active category that admin user began and save as categoryName variable
-        String categoryName = getActivePosition();
-        //done.
+        //String categoryName = getActivePosition();
         intent.putExtra(SESSION_EXTRA, sessionName);
         startActivity(intent);
     }
 
-    public String getActivePosition() {
-        ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
-        actives.whereEqualTo("active",true);
-        //will need to make this specific to the session we're in
-        actives.findInBackground(new FindCallback<Candidate>() {
-            public void done(List<Candidate> activeCandidates, ParseException e) {
-                if (e == null) {
-                    setActivePosition(activeCandidates.get(0).getPosition());
-                } else {
-                    Log.w("session_name", "Error: " + e.getMessage());
-                }
-            }
-        });
-        return activePosition;
-    }
+//    public String getActivePosition() {
+//        ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
+//        actives.whereEqualTo("active",true);
+//
+//        actives.findInBackground(new FindCallback<Candidate>() {
+//            public void done(List<Candidate> activeCandidates, ParseException e) {
+//                if (e == null) {
+//                    setActivePosition(activeCandidates.get(0).getPosition());
+//                } else {
+//                    Log.w("session_name", "Error: " + e.getMessage());
+//                }
+//            }
+//        });
+//        return activePosition;
+//    }
 
     public void setActivePosition(String newPosition) {
         activePosition = newPosition;
