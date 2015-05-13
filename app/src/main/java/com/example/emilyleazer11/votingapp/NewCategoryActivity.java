@@ -77,6 +77,9 @@ public class NewCategoryActivity extends ListActivity {
         Button viewResultsButton = (Button) findViewById(R.id.viewResultsButton);
         viewResultsButton.setOnClickListener(viewResultsClickListener);
 
+        Button deleteSession = (Button) findViewById(R.id.deleteThisSessionButton);
+        deleteSession.setOnClickListener(deleteSessionClickListener);
+
     }
 
     View.OnClickListener endSessionClickListener = new View.OnClickListener() {
@@ -90,6 +93,13 @@ public class NewCategoryActivity extends ListActivity {
         @Override
         public void onClick(View v) {
             launchResultsActivity();
+        }
+    };
+
+    View.OnClickListener deleteSessionClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            deleteSession(v);
         }
     };
 
@@ -371,5 +381,39 @@ public class NewCategoryActivity extends ListActivity {
 
     public void setReady() {
         ready = true;
+    }
+
+    public void deleteSession(View view){
+        Intent starterIntent = this.getIntent();
+        String sessionIntent = starterIntent.getStringExtra(NewCategoryActivity.SESSION_EXTRA);
+        ParseQuery<Candidate> removeCandidate = ParseQuery.getQuery("Candidate");
+        removeCandidate.whereEqualTo("session_name",sessionIntent);
+        removeCandidate.findInBackground(new FindCallback<Candidate>() {
+            public void done(List<Candidate> candidatesToDelete, ParseException e) {
+                if (e == null) {
+                    for (Candidate candidate : candidatesToDelete) {
+                        candidate.deleteInBackground();
+                    }
+                } else {
+                    Log.w("session_name", "Error: " + e.getMessage());
+                }
+            }
+        });
+        ParseQuery<Session> removeSession = ParseQuery.getQuery("Sessions");
+        removeSession.whereEqualTo("session_name",sessionIntent);
+        removeSession.findInBackground(new FindCallback<Session>() {
+            public void done(List<Session> sessionToDelete, ParseException e) {
+                if (e == null) {
+                    for (Session session: sessionToDelete) {
+                        session.deleteInBackground();
+                    }
+                } else {
+                    Log.w("session_name", "Error: " + e.getMessage());
+                }
+            }
+        });
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
     }
 }

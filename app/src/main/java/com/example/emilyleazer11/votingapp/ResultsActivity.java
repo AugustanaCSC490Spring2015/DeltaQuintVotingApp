@@ -21,10 +21,6 @@ import java.util.List;
 
 public class ResultsActivity extends ListActivity {
 
-    public final String TAG = "Voting App";
-    public ArrayList<String> listOfCandidates;
-    private String activePosition;
-    private ArrayAdapter<String> adapter;
     private TextView resultList;
 
     protected void onCreate(Bundle savedInstanceState) {
