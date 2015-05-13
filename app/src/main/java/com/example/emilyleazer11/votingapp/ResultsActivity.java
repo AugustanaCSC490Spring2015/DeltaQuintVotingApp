@@ -60,9 +60,14 @@ public class ResultsActivity extends ListActivity {
         activeCandidates.findInBackground(new FindCallback<Candidate>() {
             public void done(List<Candidate> activeCandidates, ParseException e) {
                 if (e == null) {
+                    String resultString = "";
+                    Log.w(TAG, "candidate length = " + activeCandidates.size());
                     for (Candidate candidate:activeCandidates){
-                        resultList.setText(candidate.getCandidateName());
+                       resultString = resultString + candidate.getCandidateName() + "  (" + candidate.getVotes() + ")" + "\n";
+                       Log.w(TAG, "candidate.getName = " + candidate.getCandidateName());
                     }
+                    Log.w(TAG, "resultString = " + resultString);
+                    resultList.setText(resultString);
                 } else {
                     Log.w("session_name", "Error: " + e.getMessage());
                 }
