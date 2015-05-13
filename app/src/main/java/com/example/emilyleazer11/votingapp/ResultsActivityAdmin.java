@@ -22,6 +22,7 @@ import java.util.List;
 public class ResultsActivityAdmin extends ListActivity {
 
     private TextView resultList;
+    public static final String SESSION_EXTRA = "session";
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,6 +37,12 @@ public class ResultsActivityAdmin extends ListActivity {
 
         Button refreshPage = (Button) findViewById(R.id.refreshPageButton);
         refreshPage.setOnClickListener(refreshPageOnClickListener);
+
+        Button createNewCategory = (Button) findViewById(R.id.addNewCategoryButton);
+        createNewCategory.setOnClickListener(newCategoryOnClickListener);
+
+        Button deleteSession = (Button) findViewById(R.id.deleteThisSessionButton);
+        deleteSession.setOnClickListener(deleteSessionClickListener);
 
         resultList = (TextView) this.findViewById(R.id.textView3);
 
@@ -57,6 +64,8 @@ public class ResultsActivityAdmin extends ListActivity {
                 }
             }
         });
+
+
     }
 
     View.OnClickListener refreshPageOnClickListener = new View.OnClickListener() {
@@ -66,15 +75,30 @@ public class ResultsActivityAdmin extends ListActivity {
         }
     };
 
+    View.OnClickListener newCategoryOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            addNewCategory(v);
+        }
+    };
+
     public void returnHome(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    View.OnClickListener deleteSessionClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            deleteSession(v);
+        }
+    };
+
+
     public void refreshPage(View view){
         resultList = (TextView) this.findViewById(R.id.textView3);
         Intent starterIntent = this.getIntent();
-        String sessionIntent = starterIntent.getStringExtra(NewCategoryActivity.SESSION_EXTRA);
+        String sessionIntent = starterIntent.getStringExtra(AdminLoginActivity.SESSION_EXTRA);
         ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
         actives.whereEqualTo("active",true);
         actives.whereEqualTo("session_name",sessionIntent);
@@ -95,7 +119,7 @@ public class ResultsActivityAdmin extends ListActivity {
 
     public void deleteSession(View view){
         Intent starterIntent = this.getIntent();
-        String sessionIntent = starterIntent.getStringExtra(NewCategoryActivity.SESSION_EXTRA);
+        String sessionIntent = starterIntent.getStringExtra(AdminLoginActivity.SESSION_EXTRA);
         ParseQuery<Candidate> removeCandidate = ParseQuery.getQuery("Candidate");
         removeCandidate.whereEqualTo("session_name",sessionIntent);
         removeCandidate.findInBackground(new FindCallback<Candidate>() {
@@ -130,7 +154,7 @@ public class ResultsActivityAdmin extends ListActivity {
     public void addNewCategory(View view) {
         //this should set all active positions to false
         Intent starterIntent = this.getIntent();
-        String sessionIntent = starterIntent.getStringExtra(NewCategoryActivity.SESSION_EXTRA);
+        String sessionIntent = starterIntent.getStringExtra(AdminLoginActivity.SESSION_EXTRA);
         ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
         actives.whereEqualTo("active",true);
         actives.whereEqualTo("session_name",sessionIntent);
@@ -146,7 +170,8 @@ public class ResultsActivityAdmin extends ListActivity {
                 }
             }
         });
-        Intent intent = new Intent(this, NewCategoryActivity.class);
+        Intent intent = new Intent(this, NewCategoryAgain.class);
+        intent.putExtra(SESSION_EXTRA, sessionIntent);
         startActivity(intent);
     }
 

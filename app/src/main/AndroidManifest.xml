@@ -35,6 +35,8 @@
             android:name=".ResultsActivityAdmin"/>
         <activity
             android:name=".NewCategoryAgain"/>
+        <activity
+            android:name=".NewCategoryAdmin"/>
 
 
 

@@ -29,7 +29,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class NewCategoryActivity extends ListActivity {
+public class NewCategoryAdmin extends ListActivity {
 
 
     private String categoryName;
@@ -51,7 +51,7 @@ public class NewCategoryActivity extends ListActivity {
         setContentView(R.layout.activity_new_category);
 
         Intent starterIntent = this.getIntent();
-        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
+        String sessionIntent = starterIntent.getStringExtra(ResultsActivityAdmin.SESSION_EXTRA);
 
         Log.w(TAG, "Got session = " + sessionIntent);
 
@@ -121,8 +121,6 @@ public class NewCategoryActivity extends ListActivity {
     }
 
 
-
-
     public void launchResultsActivity() {
         savedCandidates.edit().clear().commit();
         attemptActivateCategory();
@@ -144,7 +142,7 @@ public class NewCategoryActivity extends ListActivity {
             } else {
                 // create a new AlertDialog Builder
                 AlertDialog.Builder builder =
-                        new AlertDialog.Builder(NewCategoryActivity.this);
+                        new AlertDialog.Builder(NewCategoryAdmin.this);
 
                 // set dialog's message to display
                 builder.setMessage("No candidate entered.");
@@ -177,7 +175,7 @@ public class NewCategoryActivity extends ListActivity {
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
             final String savedCandidate = ((TextView) view).getText().toString();
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(NewCategoryActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(NewCategoryAdmin.this);
 
             builder.setTitle(getString(R.string.shareEditDeleteTitle, savedCandidate));
 
@@ -292,7 +290,7 @@ public class NewCategoryActivity extends ListActivity {
 
     public void addCandidateToDatabase(String candidate) {
         Intent starterIntent = this.getIntent();
-        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
+        String sessionIntent = starterIntent.getStringExtra(ResultsActivityAdmin.SESSION_EXTRA);
         Candidate newCandidate = new Candidate();
         newCandidate.setName(candidate);
         newCandidate.setPosition(categoryName);
@@ -304,11 +302,11 @@ public class NewCategoryActivity extends ListActivity {
 
     public void attemptActivateCategory() {
         Intent starterIntent = this.getIntent();
-        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
+        String sessionIntent = starterIntent.getStringExtra(ResultsActivityAdmin.SESSION_EXTRA);
         activateCurrentPosition(categoryName);
         checkReady();
         if (ready) {
-            Intent intent = new Intent(this, ResultsActivity.class);
+            Intent intent = new Intent(this, ResultsActivityAdmin.class);
             intent.putExtra(SESSION_EXTRA, sessionIntent);
             startActivity(intent);
         } else {
@@ -319,7 +317,7 @@ public class NewCategoryActivity extends ListActivity {
 
     public void checkReady() {
         Intent starterIntent = this.getIntent();
-        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
+        String sessionIntent = starterIntent.getStringExtra(ResultsActivityAdmin.SESSION_EXTRA);
         ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
         actives.whereEqualTo("active",true);
         actives.whereEqualTo("session_name",sessionIntent);
@@ -338,7 +336,7 @@ public class NewCategoryActivity extends ListActivity {
 
     public void activateCurrentPosition(String position) {
         Intent starterIntent = this.getIntent();
-        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
+        String sessionIntent = starterIntent.getStringExtra(ResultsActivityAdmin.SESSION_EXTRA);
         ParseQuery<Candidate> activatePosition = ParseQuery.getQuery("Candidate");
         activatePosition.whereEqualTo("position",position);
         activatePosition.whereEqualTo("session_name",sessionIntent);
@@ -358,15 +356,15 @@ public class NewCategoryActivity extends ListActivity {
 
     public void removeCandidateFromDatabase(String candidate) {
         Intent starterIntent = this.getIntent();
-        String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
+        String sessionIntent = starterIntent.getStringExtra(ResultsActivityAdmin.SESSION_EXTRA);
         ParseQuery<Candidate> removeCandidate = ParseQuery.getQuery("Candidate");
         removeCandidate.whereEqualTo("candidate_name", candidate);
         removeCandidate.whereEqualTo("session_name",sessionIntent);
         removeCandidate.findInBackground(new FindCallback<Candidate>() {
             public void done(List<Candidate> candidatesToDelete, ParseException e) {
                 if (e == null) {
-                   for (Candidate candidate: candidatesToDelete) {
-                       candidate.deleteInBackground();
+                    for (Candidate candidate: candidatesToDelete) {
+                        candidate.deleteInBackground();
                     }
                 } else {
                     Log.w("session_name", "Error: " + e.getMessage());
@@ -381,7 +379,7 @@ public class NewCategoryActivity extends ListActivity {
 
     public void clearActiveStatus() {
         Intent starterIntent = this.getIntent();
-        String sessionIntent = starterIntent.getStringExtra(NewCategoryActivity.SESSION_EXTRA);
+        String sessionIntent = starterIntent.getStringExtra(ResultsActivityAdmin.SESSION_EXTRA);
         ParseQuery<Candidate> deactivateCandidate = ParseQuery.getQuery("Candidate");
         deactivateCandidate.whereEqualTo("session_name",sessionIntent);
         deactivateCandidate.findInBackground(new FindCallback<Candidate>() {
