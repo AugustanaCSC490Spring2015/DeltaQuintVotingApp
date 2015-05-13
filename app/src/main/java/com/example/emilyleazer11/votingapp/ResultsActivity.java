@@ -22,6 +22,7 @@ import java.util.List;
 public class ResultsActivity extends ListActivity {
 
     private TextView resultList;
+    public static final String SESSION_EXTRA = "session";
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,6 +37,12 @@ public class ResultsActivity extends ListActivity {
 
         Button refreshPage = (Button) findViewById(R.id.refreshPageButton);
         refreshPage.setOnClickListener(refreshPageOnClickListener);
+
+        Button createNewCategory = (Button) findViewById(R.id.addNewCategoryButton);
+        createNewCategory.setOnClickListener(newCategoryOnClickListener);
+
+        Button deleteSession = (Button) findViewById(R.id.deleteThisSessionButton);
+        deleteSession.setOnClickListener(deleteSessionClickListener);
 
         resultList = (TextView) this.findViewById(R.id.textView3);
 
@@ -57,6 +64,8 @@ public class ResultsActivity extends ListActivity {
                 }
             }
         });
+
+
     }
 
     View.OnClickListener refreshPageOnClickListener = new View.OnClickListener() {
@@ -66,10 +75,25 @@ public class ResultsActivity extends ListActivity {
         }
     };
 
+    View.OnClickListener newCategoryOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            addNewCategory(v);
+        }
+    };
+
     public void returnHome(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    View.OnClickListener deleteSessionClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            deleteSession(v);
+        }
+    };
+
 
     public void refreshPage(View view){
         resultList = (TextView) this.findViewById(R.id.textView3);
@@ -146,7 +170,8 @@ public class ResultsActivity extends ListActivity {
                 }
             }
         });
-        Intent intent = new Intent(this, NewCategoryActivity.class);
+        Intent intent = new Intent(this, NewCategoryAgain.class);
+        intent.putExtra(SESSION_EXTRA, sessionIntent);
         startActivity(intent);
     }
 

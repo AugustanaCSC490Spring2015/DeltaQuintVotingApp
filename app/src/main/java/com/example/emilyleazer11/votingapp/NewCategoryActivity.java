@@ -77,8 +77,7 @@ public class NewCategoryActivity extends ListActivity {
         Button viewResultsButton = (Button) findViewById(R.id.viewResultsButton);
         viewResultsButton.setOnClickListener(viewResultsClickListener);
 
-        Button deleteSession = (Button) findViewById(R.id.deleteThisSessionButton);
-        deleteSession.setOnClickListener(deleteSessionClickListener);
+        clearActiveStatus();
 
     }
 
@@ -92,16 +91,11 @@ public class NewCategoryActivity extends ListActivity {
     View.OnClickListener viewResultsClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            //end session?
             launchResultsActivity();
         }
     };
 
-    View.OnClickListener deleteSessionClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            deleteSession(v);
-        }
-    };
 
     public void launchMainActivity() {
         savedCandidates.edit().clear().commit(); //must clear the list each time you exit the screen
@@ -125,6 +119,7 @@ public class NewCategoryActivity extends ListActivity {
         Button tempC  = (Button) findViewById(R.id.viewResultsButton);
         tempC.setEnabled(true);
     }
+
 
 
 
@@ -383,37 +378,22 @@ public class NewCategoryActivity extends ListActivity {
         ready = true;
     }
 
-    public void deleteSession(View view){
+    public void clearActiveStatus() {
         Intent starterIntent = this.getIntent();
         String sessionIntent = starterIntent.getStringExtra(NewCategoryActivity.SESSION_EXTRA);
-        ParseQuery<Candidate> removeCandidate = ParseQuery.getQuery("Candidate");
-        removeCandidate.whereEqualTo("session_name",sessionIntent);
-        removeCandidate.findInBackground(new FindCallback<Candidate>() {
-            public void done(List<Candidate> candidatesToDelete, ParseException e) {
+        ParseQuery<Candidate> deactivateCandidate = ParseQuery.getQuery("Candidate");
+        deactivateCandidate.whereEqualTo("session_name",sessionIntent);
+        deactivateCandidate.findInBackground(new FindCallback<Candidate>() {
+            public void done(List<Candidate> candidatesToDeactivate, ParseException e) {
                 if (e == null) {
-                    for (Candidate candidate : candidatesToDelete) {
-                        candidate.deleteInBackground();
+                    for (Candidate candidate : candidatesToDeactivate) {
+                        candidate.setActive(Boolean.FALSE);
+                        candidate.saveInBackground();
                     }
                 } else {
                     Log.w("session_name", "Error: " + e.getMessage());
                 }
             }
         });
-        ParseQuery<Session> removeSession = ParseQuery.getQuery("Sessions");
-        removeSession.whereEqualTo("session_name",sessionIntent);
-        removeSession.findInBackground(new FindCallback<Session>() {
-            public void done(List<Session> sessionToDelete, ParseException e) {
-                if (e == null) {
-                    for (Session session: sessionToDelete) {
-                        session.deleteInBackground();
-                    }
-                } else {
-                    Log.w("session_name", "Error: " + e.getMessage());
-                }
-            }
-        });
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-
     }
 }
