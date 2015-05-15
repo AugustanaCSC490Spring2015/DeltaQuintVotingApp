@@ -2,13 +2,17 @@ package com.example.emilyleazer11.votingapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +21,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,10 +29,9 @@ import java.util.Map;
 
 
 public class SessionActivity extends Activity implements OnItemClickListener {
-    List<Map<String, String>> candidateMappedList = new ArrayList<Map<String,String>>();
-    //there will need to be some variable, maybe passed by the intent, or by the sharedPrefManager
-    // that will define what sesion this user is logged into and what category is up
-    //right now i have itset to "NewSession"
+
+    private ArrayList<String> candidates;
+    private ArrayList<RadioButton> radioButtons;
 
     protected void onCreate(Bundle savedInstanceState){
 
@@ -40,25 +44,13 @@ public class SessionActivity extends Activity implements OnItemClickListener {
         TextView session = (TextView) this.findViewById(R.id.sessionName);
         session.setText(sessionIntent);
 
-        //populate list of possible candidates to vote for here (in the category: categoryIntent)
-        //populateCandidates();
-
-        // beginTest
-        ListView listView = (ListView) findViewById(R.id.candidatesListView);
-        listView.setOnItemClickListener(this);
-        // endTest
-
         Button submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(submitClickListener);
+
+        populateCandidates();
     }
 
-    /*
-     * Parameters:
-        adapter - The AdapterView where the click happened.
-        view - The view within the AdapterView that was clicked
-        position - The position of the view in the adapter.
-        id - The row id of the item that was clicked.
-     */
+
     @Override
     public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
         String chosenOne = ((TextView) view).getText().toString();
@@ -73,8 +65,36 @@ public class SessionActivity extends Activity implements OnItemClickListener {
     };
 
     public void submitVote(){
+        checkVote();
+
         Intent intent = new Intent(this, EndSessionActivity.class);
         startActivity(intent);
+    }
+
+    public void checkVote() {
+        Intent starterIntent = this.getIntent();
+        final String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        RadioButton chosenCandidate = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
+        String chosenCandidateString = (String) chosenCandidate.getText();
+
+        ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
+        actives.whereEqualTo("active",true);
+        actives.whereEqualTo("session_name",sessionIntent);
+        actives.whereEqualTo("candidate_name",chosenCandidateString);
+        actives.findInBackground(new FindCallback<Candidate>() {
+            public void done(List<Candidate> activeCandidates, ParseException e) {
+                if (e == null) {
+                    activeCandidates.get(0).addOneVote(sessionIntent);
+                    activeCandidates.get(0).saveInBackground();
+                } else {
+                    Log.w("session_name", "Error: " + e.getMessage());
+                }
+            }
+        });
+
+        //Toast.makeText(this,"Your vote has been recorded!", Toast.LENGTH_SHORT).show();
+
     }
 
     //query: pull all candidates of one session and one category
@@ -82,53 +102,104 @@ public class SessionActivity extends Activity implements OnItemClickListener {
         Intent starterIntent = this.getIntent();
         final String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
 
-        ParseQuery<Candidate> query = ParseQuery.getQuery("Candidates");
-        query.whereEqualTo("session_name", sessionIntent);
-        query.whereEqualTo("active", true);
-        query.findInBackground(new FindCallback<Candidate>() {
-            public void done(List<Candidate> candidateList, ParseException e) {
+        final TextView categoryText = (TextView) findViewById(R.id.categoryName);
+
+        ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
+        actives.whereEqualTo("active",true);
+        actives.whereEqualTo("session_name",sessionIntent);
+        actives.findInBackground(new FindCallback<Candidate>() {
+            public void done(List<Candidate> activeCandidates, ParseException e) {
                 if (e == null) {
-                    fillList(candidateList, sessionIntent);
-                    //no error
+                    fillList(activeCandidates);
+                    categoryText.setText(activeCandidates.get(0).getPosition());
                 } else {
                     Log.w("session_name", "Error: " + e.getMessage());
                 }
             }
         });
+
     }
 
-    public void fillList(List<Candidate> candidateList, String session) {
+    public void fillList(List<Candidate> candidateList) {
+//        Toast.makeText(this, candidateList.size(), Toast.LENGTH_SHORT).show();
+        RadioButton radioButton1 = (RadioButton) findViewById(R.id.radioButton1);
+        radioButton1.setVisibility(View.INVISIBLE);
+        RadioButton radioButton2 = (RadioButton) findViewById(R.id.radioButton2);
+        radioButton2.setVisibility(View.INVISIBLE);
+        RadioButton radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
+        radioButton3.setVisibility(View.INVISIBLE);
+        RadioButton radioButton4 = (RadioButton) findViewById(R.id.radioButton4);
+        radioButton4.setVisibility(View.INVISIBLE);
+        RadioButton radioButton5 = (RadioButton) findViewById(R.id.radioButton5);
+        radioButton5.setVisibility(View.INVISIBLE);
+        RadioButton radioButton6 = (RadioButton) findViewById(R.id.radioButton6);
+        radioButton6.setVisibility(View.INVISIBLE);
+        RadioButton radioButton7 = (RadioButton) findViewById(R.id.radioButton7);
+        radioButton7.setVisibility(View.INVISIBLE);
+        RadioButton radioButton8 = (RadioButton) findViewById(R.id.radioButton8);
+        radioButton8.setVisibility(View.INVISIBLE);
+        radioButton1.setText(candidateList.get(0).getCandidateName());
 
-        for (Candidate candidate: candidateList) {
-            String currentCandidate = candidate.getCandidateName();
-            candidateMappedList.add(createCandidate(session, currentCandidate));
+        int numCandidates = candidateList.size();
+
+        if (numCandidates == 0) {
+            Toast.makeText(this, "No Canidates", Toast.LENGTH_SHORT);
+        } else {
+            if (numCandidates >= 1) {
+                radioButton1.setText(candidateList.get(0).getCandidateName());
+                radioButton1.setVisibility(View.VISIBLE);
+            }
+            if (numCandidates >= 2) {
+                radioButton2.setText(candidateList.get(1).getCandidateName());
+                radioButton2.setVisibility(View.VISIBLE);
+            }
+            if (numCandidates >= 3) {
+                radioButton3.setText(candidateList.get(2).getCandidateName());
+                radioButton3.setVisibility(View.VISIBLE);
+            }
+            if (numCandidates >= 4) {
+                radioButton4.setText(candidateList.get(3).getCandidateName());
+                radioButton4.setVisibility(View.VISIBLE);
+            }
+            if (numCandidates >= 5) {
+                radioButton5.setText(candidateList.get(4).getCandidateName());
+                radioButton5.setVisibility(View.VISIBLE);
+            }
+            if (numCandidates >= 6) {
+                radioButton6.setText(candidateList.get(5).getCandidateName());
+                radioButton6.setVisibility(View.VISIBLE);
+            }
+            if (numCandidates >= 7) {
+                radioButton7.setText(candidateList.get(6).getCandidateName());
+                radioButton7.setVisibility(View.VISIBLE);
+            }
+            if (numCandidates == 8) {
+                radioButton8.setText(candidateList.get(7).getCandidateName());
+                radioButton8.setVisibility(View.VISIBLE);
+            }
         }
-        displayList(candidateMappedList);
     }
 
-    public void displayList(List<Map<String, String>> candidateMappedList) {
-        ListView lv = (ListView) findViewById(R.id.candidatesListView);
+    public void populateRadioButtons() {
+        RadioButton radioButton1 = (RadioButton) findViewById(R.id.radioButton1);
+        radioButton1.setVisibility(View.INVISIBLE);
+        RadioButton radioButton2 = (RadioButton) findViewById(R.id.radioButton2);
+        radioButton2.setVisibility(View.INVISIBLE);
+        RadioButton radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
+        radioButton3.setVisibility(View.INVISIBLE);
+        RadioButton radioButton4 = (RadioButton) findViewById(R.id.radioButton4);
+        radioButton4.setVisibility(View.INVISIBLE);
+        RadioButton radioButton5 = (RadioButton) findViewById(R.id.radioButton5);
+        radioButton5.setVisibility(View.INVISIBLE);
+        RadioButton radioButton6 = (RadioButton) findViewById(R.id.radioButton6);
+        radioButton6.setVisibility(View.INVISIBLE);
+        RadioButton radioButton7 = (RadioButton) findViewById(R.id.radioButton7);
+        radioButton7.setVisibility(View.INVISIBLE);
+        RadioButton radioButton8 = (RadioButton) findViewById(R.id.radioButton8);
+        radioButton8.setVisibility(View.INVISIBLE);
 
-        // this is the adapter that will help show the list
-        SimpleAdapter ourSimpleAdapter = new SimpleAdapter(this, candidateMappedList,
-                android.R.layout.simple_list_item_1, new String[]{"category"},
-                new int[]{android.R.id.text1});
-        lv.setAdapter(ourSimpleAdapter);
+
     }
-
-    private HashMap<String, String> createCandidate(String key, String name) {
-        HashMap<String, String> tempCandidate = new HashMap<String, String>();
-        tempCandidate.put(key, name);
-        return tempCandidate;
-    }
-
-    private void generateList() {
-        candidateMappedList.add(createCandidate("test", "Erik"));
-        candidateMappedList.add(createCandidate("test", "Chris"));
-        candidateMappedList.add(createCandidate("test", "Alex"));
-    }
-
-
 
 
 }
