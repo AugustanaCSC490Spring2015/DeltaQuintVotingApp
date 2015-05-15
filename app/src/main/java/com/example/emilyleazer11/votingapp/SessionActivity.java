@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -20,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class SessionActivity extends Activity {
+public class SessionActivity extends Activity implements OnItemClickListener {
     List<Map<String, String>> candidateMappedList = new ArrayList<Map<String,String>>();
     //there will need to be some variable, maybe passed by the intent, or by the sharedPrefManager
     // that will define what sesion this user is logged into and what category is up
@@ -41,17 +44,25 @@ public class SessionActivity extends Activity {
         //populateCandidates();
 
         // beginTest
-        generateList();
-        ListView lv = (ListView) findViewById(R.id.candidatesListView);
-        // this is the adapter that will help show the list
-        SimpleAdapter ourSimpleAdapter = new SimpleAdapter(this, candidateMappedList,
-                android.R.layout.simple_list_item_1, new String[]{"category"},
-                new int[]{android.R.id.text1});
-        lv.setAdapter(ourSimpleAdapter);
+        ListView listView = (ListView) findViewById(R.id.candidatesListView);
+        listView.setOnItemClickListener(this);
         // endTest
 
         Button submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(submitClickListener);
+    }
+
+    /*
+     * Parameters:
+        adapter - The AdapterView where the click happened.
+        view - The view within the AdapterView that was clicked
+        position - The position of the view in the adapter.
+        id - The row id of the item that was clicked.
+     */
+    @Override
+    public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+        String chosenOne = ((TextView) view).getText().toString();
+        Toast.makeText(this, chosenOne, Toast.LENGTH_LONG).show();
     }
 
     View.OnClickListener submitClickListener = new View.OnClickListener(){

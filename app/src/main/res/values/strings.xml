@@ -88,6 +88,15 @@
     <string name="voting_user_title">Voting in Progress...</string>
 
 
+    <string-array name="candidates_array">
+        <item>Emily</item>
+        <item>Erik</item>
+        <item>Mike</item>
+        <item>Madden</item>
+        <item>Reed</item>
+    </string-array>
+
+
 
 
 </resources>

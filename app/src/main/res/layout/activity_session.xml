@@ -52,7 +52,9 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/list_view_long_height"
             android:id="@+id/candidatesListView"
-            android:background="@color/delta_quint_gray" />
+            android:background="@color/delta_quint_gray"
+            android:choiceMode="singleChoice"
+            android:entries="@array/candidates_array" />
     </LinearLayout>
 
     <LinearLayout
