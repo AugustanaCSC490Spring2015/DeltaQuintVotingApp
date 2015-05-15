@@ -80,15 +80,15 @@ public class SessionActivity extends Activity implements OnItemClickListener {
     //query: pull all candidates of one session and one category
     public void populateCandidates() {
         Intent starterIntent = this.getIntent();
-        String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
+        final String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
 
         ParseQuery<Candidate> query = ParseQuery.getQuery("Candidates");
         query.whereEqualTo("session_name", sessionIntent);
-        //query.whereEqualTo("position", categoryIntent);
+        query.whereEqualTo("active", true);
         query.findInBackground(new FindCallback<Candidate>() {
             public void done(List<Candidate> candidateList, ParseException e) {
                 if (e == null) {
-                    //fillList(candidateList, categoryIntent);
+                    fillList(candidateList, sessionIntent);
                     //no error
                 } else {
                     Log.w("session_name", "Error: " + e.getMessage());
@@ -97,19 +97,11 @@ public class SessionActivity extends Activity implements OnItemClickListener {
         });
     }
 
-    public void fillList(List<Candidate> candidateList, String category) {
+    public void fillList(List<Candidate> candidateList, String session) {
 
-        //this method should populate the page with all possible candidates.
-        //the List object candidateList full of object types "Candidate"
-        //will contain all of the candidates in the candidate table
-        //that have a session_name of "NewSession" and
-        //position of "Treasurer"
-        List<Map<String, String>> candidateMappedList = new ArrayList<Map<String,String>>();
-        final String categoryName = category;
         for (Candidate candidate: candidateList) {
             String currentCandidate = candidate.getCandidateName();
-            candidateMappedList.add(createCandidate(categoryName, currentCandidate));
-            //generateList();
+            candidateMappedList.add(createCandidate(session, currentCandidate));
         }
         displayList(candidateMappedList);
     }
