@@ -1,22 +1,34 @@
 <resources>
+    // General Strings
     <string name="app_name">Greek Voter</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    // activity_main strings
     <string name="welcome">Welcome Voter</string>
     <string name="logo_description">The logo for Greek Voter</string>
     <string name="create_session">Create\nNew Session</string>
     <string name="join_session">Join\nCurrent Session</string>
     <string name="admin_menu">Admin: View and Manage Results</string>
 
+    // Strings for the voting activities
+    // activity_join_session strings
     <string name="join_header">Join Existing Session</string>
     <string name="session_name_join">Session Name:</string>
     <string name="session_password_join">Session Password:</string>
     <string name="join_session_button_join">Join Session</string>
 
-    <string name="next">Next</string>
+    // activity_session strings
+    <string name="voting_user_title">Voting in Progress...</string>
+    <string name="submit_button">Submit</string>
 
+    // activity_end_session strings
+    <string name="vote_thanks">Thanks!</string>
+    <string name="vote_recorded">Your vote has been recorded</string>
+    <string name="quit_session">Quit</string>
+    <string name="join_session_again">Join Another\nSession</string>
+
+    // Strings for creating a voting session
+    // activity_create_session strings
     <string name="session_title_join">Creating Your Session</string>
     <string name="session_name_create">Create Session Name</string>
     <string name="session_password_create">Create Session Password</string>
@@ -30,17 +42,12 @@
     <string name="admin_create_password">Create Admin Password</string>
     <string name="admin_confirm_password">Confirm Admin Password</string>
     <string name="quit_create">Quit</string>
-    <string name="submit_button">Submit</string>
+    <string name="next">Next</string>
 
-    <string name="vote_thanks">Thanks!</string>
-    <string name="vote_recorded">Your vote has been recorded</string>
-    <string name="quit_session">Quit</string>
-    <string name="join_session_again">Join Another\nSession</string>
-
+    // activity_new_category strings
     <string name="canidates_create">Adding Your Candidates</string>
-    <string name="candidate_name_prompt_new">Candidate Name</string>
     <string name="category_name_new">Category Name</string>
-    <string name="add_candidate_new">Add</string>
+    <string name="candidate_name_prompt_new">Candidate Name</string>
     <string name="candidate_list_new">Candidate List</string>
     <string name="end_voting_session_button_new">End Voting Session</string>
     <string name="view_results_button_new">Finalize and View Results</string>
@@ -58,25 +65,16 @@
         to edit or delete it!
     </string>
     <string name="finish_session">Finalize Session</string>
-
-    <string name="add_category_title">Add Categories</string>
-    <string name="category_count">1/1</string>
-    <string name="category_name">Category Name:</string>
-    <string name="number_of_buttons">Number of Choices:</string>
-    <string name="label_button_title">Label Buttons</string>
-    <string name="button_count">1/2</string>
-    <string name="button_value">Button Value:</string>
-    <string name="button_label">Button Label:</string>
-    <string name="submit_button_label">Complete This Button</string>
-    <string name="submit_category">Complete This Category</string>
     <string name="quit">Quit</string>
-    <string name="review">Review Session</string>
 
+    // Strings for the admin activities
+    // activity_admin_login strings
     <string name="admin_login_header">Admin Login</string>
     <string name="admin_login_name">Session Name:</string>
     <string name="admin_login_password">Admin Password:</string>
     <string name="admin_login_submit">Login</string>
 
+    // activity_results strings
     <string name="session_results">Session Results</string>
     <string name="session_name">Session Name</string>
     <string name="category">Category</string>
@@ -84,7 +82,5 @@
     <string name="back_to_home">Home</string>
     <string name="delete_session">Delete this session</string>
     <string name="add_category">Add Category</string>
-
-    <string name="voting_user_title">Voting in Progress...</string>
 
 </resources>
