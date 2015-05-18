@@ -41,7 +41,7 @@ public class NewCategoryActivity extends ListActivity {
     private static final String CANDIDATES = "candidates";
     private EditText candidateEditText;
     private SharedPreferences savedCandidates;
-    private ArrayList<String> candidates;
+    private ArrayList<String> candidates;//List View Source: GroceryListLab/TwitterSearches
     private ArrayAdapter<String> adapter;
     private boolean ready = false;
 
