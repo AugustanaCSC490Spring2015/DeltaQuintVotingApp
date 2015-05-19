@@ -7,6 +7,9 @@ import com.parse.ParseObject;
 
 /**
  * Created by Reed on 4/22/2015.
+ *
+ * This class initializes the application to be configured with our parse database
+ *      also it registers the two database/app classes Session and Candidate
  */
 public class UseParse extends Application {
     @Override

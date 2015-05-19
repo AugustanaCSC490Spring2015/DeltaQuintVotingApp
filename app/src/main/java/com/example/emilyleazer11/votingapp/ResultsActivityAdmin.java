@@ -19,6 +19,10 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * This class displays the results following the admin logon
+ *
+ */
 public class ResultsActivityAdmin extends ListActivity {
 
     private TextView resultList;

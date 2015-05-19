@@ -28,7 +28,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+/*
+ * This class is the same as NewCategoryactivity
+ *          however this page is as follows from the admin page, rather than
+ *          from the create sessionpage. Thus if an admin logs in from the back
+ *          end, they use this java class rather tan NewCategoryActivity.
+ *          It neccessitates a seperate class as it has a different intent
+ *          being passed in.
+ */
 public class NewCategoryAdmin extends ListActivity {
 
 

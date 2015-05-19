@@ -7,7 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-
+/*
+ *    This code runs the splash page of the application
+ */
 public class MainActivity extends ActionBarActivity {
 
     @Override

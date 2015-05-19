@@ -2,7 +2,6 @@ package com.example.emilyleazer11.votingapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,25 +12,16 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class SessionActivity extends Activity implements OnItemClickListener {
-
-    private ArrayList<String> candidates;
-    private ArrayList<RadioButton> radioButtons;
 
     protected void onCreate(Bundle savedInstanceState){
 
@@ -95,8 +85,6 @@ public class SessionActivity extends Activity implements OnItemClickListener {
             }
         });
 
-        //Toast.makeText(this,"Your vote has been recorded!", Toast.LENGTH_SHORT).show();
-
     }
 
     //query: pull all candidates of one session and one category
@@ -123,6 +111,8 @@ public class SessionActivity extends Activity implements OnItemClickListener {
     }
 
     // fills the radio buttons with candidates
+    // also sets those that are not used with hidden attributes
+    // so any unncesseary radio buttons don't show
     public void fillList(List<Candidate> candidateList) {
 //        Toast.makeText(this, candidateList.size(), Toast.LENGTH_SHORT).show();
         RadioButton radioButton1 = (RadioButton) findViewById(R.id.radioButton1);
@@ -146,7 +136,7 @@ public class SessionActivity extends Activity implements OnItemClickListener {
         int numCandidates = candidateList.size();
 
         if (numCandidates == 0) {
-            Toast.makeText(this, "No Canidates", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "No Canidates", Toast.LENGTH_SHORT).show();
         } else {
             if (numCandidates >= 1) {
                 radioButton1.setText(candidateList.get(0).getCandidateName());
@@ -182,27 +172,5 @@ public class SessionActivity extends Activity implements OnItemClickListener {
             }
         }
     }
-
-   /* public void populateRadioButtons() {
-        RadioButton radioButton1 = (RadioButton) findViewById(R.id.radioButton1);
-        radioButton1.setVisibility(View.INVISIBLE);
-        RadioButton radioButton2 = (RadioButton) findViewById(R.id.radioButton2);
-        radioButton2.setVisibility(View.INVISIBLE);
-        RadioButton radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
-        radioButton3.setVisibility(View.INVISIBLE);
-        RadioButton radioButton4 = (RadioButton) findViewById(R.id.radioButton4);
-        radioButton4.setVisibility(View.INVISIBLE);
-        RadioButton radioButton5 = (RadioButton) findViewById(R.id.radioButton5);
-        radioButton5.setVisibility(View.INVISIBLE);
-        RadioButton radioButton6 = (RadioButton) findViewById(R.id.radioButton6);
-        radioButton6.setVisibility(View.INVISIBLE);
-        RadioButton radioButton7 = (RadioButton) findViewById(R.id.radioButton7);
-        radioButton7.setVisibility(View.INVISIBLE);
-        RadioButton radioButton8 = (RadioButton) findViewById(R.id.radioButton8);
-        radioButton8.setVisibility(View.INVISIBLE);
-
-
-    }*/
-
 
 }

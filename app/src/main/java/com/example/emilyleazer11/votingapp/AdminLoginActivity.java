@@ -54,7 +54,7 @@ public class AdminLoginActivity extends Activity {
         actives.findInBackground(new FindCallback<Session>() {
             public void done(List<Session> activeCandidates, ParseException e) {
                 if (e == null && activeCandidates.size()> 0) {
-                    if (activeCandidates.get(0).getAdminPass().toString().equals(passwordAttempt)){
+                    if (activeCandidates.get(0).getAdminPass().equals(passwordAttempt)){
                         successLogon();
                     } else {
                         failLogon();

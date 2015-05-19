@@ -8,6 +8,9 @@ import android.widget.Button;
 
 /**
  * Created by emilyleazer11 on 4/24/2015.
+ *
+ *  This class is used to close out sessions, remove the data from the database and
+ *     return the app to the home page
  */
 public class EndSessionActivity extends Activity {
 

@@ -15,7 +15,10 @@ import com.parse.ParseQuery;
 
 import java.util.List;
 
-
+/*
+ *    This class is used to allow voters to join a session
+ *      it offers a name and password box for a candidate to fill in
+ */
 public class JoinSessionActivity extends Activity {
 
     public static final String SESSION_EXTRA = "Session";

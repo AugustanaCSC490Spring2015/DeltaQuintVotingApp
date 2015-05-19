@@ -28,7 +28,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+/*
+ *  This class is the same as NewCategoryActivity
+ *      however it is for when an admin creates a new
+ *      position from the results page.  It neccesitates
+ *      an extra class because it has a different intent
+ *      passed in.
+ */
 public class NewCategoryAgain extends ListActivity {
 
 

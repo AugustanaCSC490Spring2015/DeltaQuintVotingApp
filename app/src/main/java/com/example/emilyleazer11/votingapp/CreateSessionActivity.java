@@ -19,6 +19,8 @@ import java.util.List;
 
 /**
  * Created by emilyleazer11 on 4/17/2015.
+ *
+ * This class is used when an admin creates a new session
  */
 public class CreateSessionActivity extends Activity {
 
@@ -160,6 +162,7 @@ public class CreateSessionActivity extends Activity {
     }
 
     // makes you repost the information if the session name already exists
+    //  also clears the fields so the user can re enter
     public void createSessionFail(EditText sessionNameTextField, EditText sessionPassTextField, EditText sessionPassConfirmTextField,EditText sessionAdminTextField, EditText sessionAdminConfirmTextField) {
         sessionNameTextField.setText("");
         sessionPassTextField.setText("");

@@ -19,6 +19,10 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+/*  This class is designed to display the results of the current votes to the admin.
+        used in xml activity_results.xml
+
+ */
 public class ResultsActivity extends ListActivity {
 
     private TextView resultList;
@@ -64,7 +68,6 @@ public class ResultsActivity extends ListActivity {
                 }
             }
         });
-
 
     }
 

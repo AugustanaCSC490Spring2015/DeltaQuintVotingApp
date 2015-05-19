@@ -28,7 +28,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+/*
+ *  This class is used to add a new category to a session,
+ *      by an admin;
+ *      The admin can add candidates, set the name of the position
+ *      and activate the session to be voted on
+ */
 public class NewCategoryActivity extends ListActivity {
 
 
