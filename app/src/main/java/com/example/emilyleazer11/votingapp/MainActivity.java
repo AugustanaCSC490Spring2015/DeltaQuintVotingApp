@@ -16,24 +16,25 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
+    // opens the activity to create a new session
     public void createNewSession(View view){
         Intent intent = new Intent(this, CreateSessionActivity.class);
         startActivity(intent);
     }
 
+    // begins the process for users to vote
     public void joinExistingSession(View view){
         Intent intent = new Intent (this, JoinSessionActivity.class);
         startActivity(intent);
     }
 
+    // begins the login for the admins to view the results and do admin duties
     public void resultsLogin(View view){
         Intent intent = new Intent (this, AdminLoginActivity.class);
         startActivity(intent);
     }
 
-
-
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -53,5 +54,5 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

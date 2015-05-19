@@ -68,25 +68,26 @@ public class ResultsActivity extends ListActivity {
 
     }
 
+    // method to return the user back to the main menu
+    public void returnHome(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    // listener for the refresh page button
     View.OnClickListener refreshPageOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             refreshPage(v);
         }
     };
-
+    // listener for the button to add a new category
     View.OnClickListener newCategoryOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             addNewCategory(v);
         }
     };
-
-    public void returnHome(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
+    // listener for deleting a session from the database
     View.OnClickListener deleteSessionClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -94,7 +95,7 @@ public class ResultsActivity extends ListActivity {
         }
     };
 
-
+    // method for refreshing the page to view the data like the votes for each candidate
     public void refreshPage(View view){
         resultList = (TextView) this.findViewById(R.id.textView3);
         Intent starterIntent = this.getIntent();
@@ -117,6 +118,7 @@ public class ResultsActivity extends ListActivity {
         });
     }
 
+    // removes the session from the database and then returns the user to the main menu
     public void deleteSession(View view){
         Intent starterIntent = this.getIntent();
         String sessionIntent = starterIntent.getStringExtra(NewCategoryActivity.SESSION_EXTRA);
@@ -151,6 +153,8 @@ public class ResultsActivity extends ListActivity {
 
     }
 
+    // lets the admin deactive the old voting session and make a new category
+    // this is so you can have multiple categories but under the same category for simplicity
     public void addNewCategory(View view) {
         //this should set all active positions to false
         Intent starterIntent = this.getIntent();

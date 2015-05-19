@@ -40,7 +40,7 @@ public class AdminLoginActivity extends Activity {
         }
     };
 
-
+    // reads the input data and either succeeds or fails to login to the proper admin results page
     public void adminLogin(View view){
 
         EditText sessionEditText = (EditText) findViewById(R.id.sessionNameEditText);
@@ -68,24 +68,28 @@ public class AdminLoginActivity extends Activity {
             });
         }
 
+    // opens to the new activity if login is successful
     public void successLogon() {
         Intent intent = new Intent(this, ResultsActivityAdmin.class);
         intent.putExtra(SESSION_EXTRA,sessionToEnter);
         startActivity(intent);
     }
 
+    // message to show an incorrect password
     public void failLogon() {
         Toast toast = Toast.makeText(this, "Incorrect Password", Toast.LENGTH_SHORT);
         toast.show();
         clearFields();
     }
 
+    // user tried to join a non-existing session and shows the following method
     public void failLogonNoSession() {
         Toast toast = Toast.makeText(this, "A session of this name does not exist", Toast.LENGTH_SHORT);
         toast.show();
         clearFields();
     }
 
+    // clears the fields for a user to re-input data
     public void clearFields() {
         EditText sessionEditText = (EditText) findViewById(R.id.sessionNameEditText);
         sessionEditText.setText("");

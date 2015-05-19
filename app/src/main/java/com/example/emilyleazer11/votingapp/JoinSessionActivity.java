@@ -40,6 +40,7 @@ public class JoinSessionActivity extends Activity {
         }
     };
 
+    // checks to join a session
     public void joinSession() {
         try {
             TextView sessionName = (TextView) findViewById(R.id.sessionNameEditText);
@@ -52,7 +53,7 @@ public class JoinSessionActivity extends Activity {
         }
     }
 
-
+    // the code to checks the fields and join the appropriate voting session
     public void attemptJoinSession(String session, String pass, TextView sessionName, TextView sessionPass) throws ParseException {
         final String attemptedPass = pass;
         final TextView sessionNameText = sessionName;
@@ -73,13 +74,16 @@ public class JoinSessionActivity extends Activity {
         });
     }
 
+    // on a failed attempt to join a session
     public void joinFail(TextView sessionName, TextView sessionPass) {
         sessionName.setText("");
         sessionPass.setText("");
-        Toast.makeText(this, "The session or password is incorrect, or does not exist.",
+        Toast.makeText(this, "The session name or password is incorrect, " +
+                        "or the session does not exist.",
                 Toast.LENGTH_SHORT).show();
     }
 
+    // opens the voting session for the user to vote
     public void joinSuccess(String sessionName) {
         Intent intent = new Intent (this, SessionActivity.class);
         //String categoryName = getActivePosition();
@@ -87,24 +91,24 @@ public class JoinSessionActivity extends Activity {
         startActivity(intent);
     }
 
-//    public String getActivePosition() {
-//        ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
-//        actives.whereEqualTo("active",true);
-//
-//        actives.findInBackground(new FindCallback<Candidate>() {
-//            public void done(List<Candidate> activeCandidates, ParseException e) {
-//                if (e == null) {
-//                    setActivePosition(activeCandidates.get(0).getPosition());
-//                } else {
-//                    Log.w("session_name", "Error: " + e.getMessage());
-//                }
-//            }
-//        });
-//        return activePosition;
-//    }
+/*    public String getActivePosition() {
+        ParseQuery<Candidate> actives = ParseQuery.getQuery("Candidate");
+        actives.whereEqualTo("active",true);
 
-    public void setActivePosition(String newPosition) {
+        actives.findInBackground(new FindCallback<Candidate>() {
+            public void done(List<Candidate> activeCandidates, ParseException e) {
+                if (e == null) {
+                    setActivePosition(activeCandidates.get(0).getPosition());
+                } else {
+                    Log.w("session_name", "Error: " + e.getMessage());
+                }
+            }
+        });
+        return activePosition;
+    }*/
+
+/*    public void setActivePosition(String newPosition) {
         activePosition = newPosition;
-    }
+    }*/
 }
 

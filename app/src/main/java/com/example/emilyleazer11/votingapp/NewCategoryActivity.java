@@ -96,13 +96,14 @@ public class NewCategoryActivity extends ListActivity {
         }
     };
 
-
+    // upon quitting creating a new session, it clears the info and returns to the main menu
     public void launchMainActivity() {
         savedCandidates.edit().clear().commit(); //must clear the list each time you exit the screen
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    // code to add the category name to the database
     public void addCategoryName(View view) {
         // code to add the category name to database
         // categoryName = ;
@@ -159,6 +160,7 @@ public class NewCategoryActivity extends ListActivity {
         }
     };
 
+    // adds the candidate to the list
     private void addCandidate(String candidateName) {
         SharedPreferences.Editor preferencesEditor = savedCandidates.edit();
         preferencesEditor.putString(candidateName, candidateName);
@@ -172,6 +174,7 @@ public class NewCategoryActivity extends ListActivity {
         }
     }
 
+    // starts the prompt for editing or deleting the candidate
     OnItemLongClickListener candidateLongClickListener = new OnItemLongClickListener() {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -215,6 +218,7 @@ public class NewCategoryActivity extends ListActivity {
         }
     };
 
+    // for editing the candidate
     private void editCandidate(final String candidate) {
         AlertDialog.Builder confirmBuilder = new AlertDialog.Builder(this);
         confirmBuilder.setMessage("Are you sure you want to edit this candidate?");
@@ -249,6 +253,7 @@ public class NewCategoryActivity extends ListActivity {
         confirmBuilder.create().show();
     }
 
+    // for deleting the candidate
     private void deleteCandidate(final String candidate) {
         // create a new AlertDialog
         AlertDialog.Builder confirmBuilder = new AlertDialog.Builder(this);
@@ -290,6 +295,7 @@ public class NewCategoryActivity extends ListActivity {
         confirmBuilder.create().show(); // display AlertDialog
     }
 
+    // adds candidate to the database
     public void addCandidateToDatabase(String candidate) {
         Intent starterIntent = this.getIntent();
         String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
@@ -302,6 +308,7 @@ public class NewCategoryActivity extends ListActivity {
         newCandidate.saveInBackground();
     }
 
+    // checks to make sure all of the information is ready to be viewed
     public void attemptActivateCategory() {
         Intent starterIntent = this.getIntent();
         String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);
@@ -317,6 +324,7 @@ public class NewCategoryActivity extends ListActivity {
         }
     }
 
+    //
     public void checkReady() {
         Intent starterIntent = this.getIntent();
         String sessionIntent = starterIntent.getStringExtra(CreateSessionActivity.SESSION_EXTRA);

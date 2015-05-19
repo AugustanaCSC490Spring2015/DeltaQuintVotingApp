@@ -64,6 +64,7 @@ public class SessionActivity extends Activity implements OnItemClickListener {
         }
     };
 
+    // submits the users vote
     public void submitVote(){
         checkVote();
 
@@ -71,6 +72,7 @@ public class SessionActivity extends Activity implements OnItemClickListener {
         startActivity(intent);
     }
 
+    // to see who the user picked and adds a vote to the database
     public void checkVote() {
         Intent starterIntent = this.getIntent();
         final String sessionIntent = starterIntent.getStringExtra(JoinSessionActivity.SESSION_EXTRA);
@@ -120,6 +122,7 @@ public class SessionActivity extends Activity implements OnItemClickListener {
 
     }
 
+    // fills the radio buttons with candidates
     public void fillList(List<Candidate> candidateList) {
 //        Toast.makeText(this, candidateList.size(), Toast.LENGTH_SHORT).show();
         RadioButton radioButton1 = (RadioButton) findViewById(R.id.radioButton1);
@@ -180,7 +183,7 @@ public class SessionActivity extends Activity implements OnItemClickListener {
         }
     }
 
-    public void populateRadioButtons() {
+   /* public void populateRadioButtons() {
         RadioButton radioButton1 = (RadioButton) findViewById(R.id.radioButton1);
         radioButton1.setVisibility(View.INVISIBLE);
         RadioButton radioButton2 = (RadioButton) findViewById(R.id.radioButton2);
@@ -199,7 +202,7 @@ public class SessionActivity extends Activity implements OnItemClickListener {
         radioButton8.setVisibility(View.INVISIBLE);
 
 
-    }
+    }*/
 
 
 }

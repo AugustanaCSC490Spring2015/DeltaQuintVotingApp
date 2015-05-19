@@ -24,25 +24,25 @@ public class EndSessionActivity extends Activity {
 
     }
 
+    // returns the user back to the home screen
     View.OnClickListener quitClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View v){
             launchMainActivity();
         }
     };
-
     public void launchMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    // reopens the login screen for joing the session
     View.OnClickListener joinAnotherSessionButtonClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View v){
             launchJoinSessionActivity();
         }
     };
-
     public void launchJoinSessionActivity(){
         Intent intent = new Intent(this, JoinSessionActivity.class);
         startActivity(intent);

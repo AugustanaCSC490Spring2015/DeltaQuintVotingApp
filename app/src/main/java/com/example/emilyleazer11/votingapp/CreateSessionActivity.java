@@ -58,12 +58,13 @@ public class CreateSessionActivity extends Activity {
         }
     };
 
-
+    // upon pressing quit, no data is saved and the user is brought back to the main menu
     public void launchMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    // takes all of the data input by the user and uploads it to the database
     public void createCategory() {
 
         EditText sessionNameText = (EditText) findViewById(R.id.sessionNameEditText);
@@ -111,7 +112,7 @@ public class CreateSessionActivity extends Activity {
 
     }
 
-
+    // checks to make sure the session information doesn't already exist
     public void attemptCreateSession(String session, String newSessionPass, String newAdminPass, EditText sessionNameText,EditText sessionPasswordText, EditText sessionConfirmPasswordText, EditText adminPasswordText, EditText adminConfirmPasswordText) throws ParseException {
         final String sessionName = session;
         final String sessionPass = newSessionPass;
@@ -137,6 +138,7 @@ public class CreateSessionActivity extends Activity {
         });
     }
 
+    // code to push information up to the database
     public void createSessionSuccess(String session, String newSessionPass, String newAdminPassword){
         //add Session Name to database
         Session newSession = new Session();
@@ -157,6 +159,7 @@ public class CreateSessionActivity extends Activity {
         startActivity(intent);
     }
 
+    // makes you repost the information if the session name already exists
     public void createSessionFail(EditText sessionNameTextField, EditText sessionPassTextField, EditText sessionPassConfirmTextField,EditText sessionAdminTextField, EditText sessionAdminConfirmTextField) {
         sessionNameTextField.setText("");
         sessionPassTextField.setText("");
